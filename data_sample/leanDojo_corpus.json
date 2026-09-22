@@ -1,0 +1,38 @@
+[
+  {
+    "path": "Mathlib/Analysis/NormedSpace/ProdLp.lean",
+    "imports": [
+      "Mathlib/Analysis/MeanInequalities.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Analysis/NormedSpace/WithLp.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "WithLp.prod_norm_eq_add",
+        "code": "theorem prod_norm_eq_add (hp : 0 < p.toReal) (f : WithLp p (α × β)) :\n    ‖f‖ = (‖f.fst‖ ^ p.toReal + ‖f.snd‖ ^ p.toReal) ^ (1 / p.toReal)",
+        "start": [
+          272,
+          1
+        ],
+        "end": [
+          275,
+          45
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "WithLp.prod_nnnorm_eq_add",
+        "code": "theorem prod_nnnorm_eq_add (hp : p ≠ ∞) (f : WithLp p (α × β)) :\n    ‖f‖₊ = (‖f.fst‖₊ ^ p.toReal + ‖f.snd‖₊ ^ p.toReal) ^ (1 / p.toReal)",
+        "start": [
+          610,
+          1
+        ],
+        "end": [
+          613,
+          59
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  }
+]

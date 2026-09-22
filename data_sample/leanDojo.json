@@ -1,0 +1,64 @@
+{
+  "version": "v10",
+  "metadata": {
+    "dataset_name": "LeanDojo Benchmark 4",
+    "creation_time": "2024-07-02 13:14:48.804567",
+    "from_repo": {
+      "url": "https://github.com/leanprover-community/mathlib4",
+      "commit": "29dcec074de168ac2bf835a77ef68bbe069194c5"
+    },
+    "leandojo_version": "2.0.0"
+  },
+  "split": "random/val",
+  "corpus_file": "leanDojo_corpus.json",
+  "records": [
+    {
+      "url": "https://github.com/leanprover-community/mathlib4",
+      "commit": "29dcec074de168ac2bf835a77ef68bbe069194c5",
+      "file_path": "Mathlib/Analysis/NormedSpace/ProdLp.lean",
+      "full_name": "WithLp.prod_nnnorm_eq_add",
+      "start": [
+        610,
+        1
+      ],
+      "end": [
+        613,
+        59
+      ],
+      "traced_tactics": [
+        {
+          "tactic": "ext",
+          "annotated_tactic": [
+            "ext",
+            []
+          ],
+          "state_before": "p : ℝ≥0∞\n𝕜 : Type u_1\nα : Type u_2\nβ : Type u_3\nhp✝ : Fact (1 ≤ p)\ninst✝¹ : SeminormedAddCommGroup α\ninst✝ : SeminormedAddCommGroup β\nhp : p ≠ ⊤\nf : WithLp p (α × β)\n⊢ ‖f‖₊ = (‖f.1‖₊ ^ p.toReal + ‖f.2‖₊ ^ p.toReal) ^ (1 / p.toReal)",
+          "state_after": "case a\np : ℝ≥0∞\n𝕜 : Type u_1\nα : Type u_2\nβ : Type u_3\nhp✝ : Fact (1 ≤ p)\ninst✝¹ : SeminormedAddCommGroup α\ninst✝ : SeminormedAddCommGroup β\nhp : p ≠ ⊤\nf : WithLp p (α × β)\n⊢ ↑‖f‖₊ = ↑((‖f.1‖₊ ^ p.toReal + ‖f.2‖₊ ^ p.toReal) ^ (1 / p.toReal))"
+        },
+        {
+          "tactic": "simp [prod_norm_eq_add (p.toReal_pos_iff_ne_top.mpr hp)]",
+          "annotated_tactic": [
+            "simp [<a>prod_norm_eq_add</a> (p.toReal_pos_iff_ne_top.mpr hp)]",
+            [
+              {
+                "full_name": "WithLp.prod_norm_eq_add",
+                "def_path": "Mathlib/Analysis/NormedSpace/ProdLp.lean",
+                "def_pos": [
+                  272,
+                  9
+                ],
+                "def_end_pos": [
+                  272,
+                  25
+                ]
+              }
+            ]
+          ],
+          "state_before": "case a\np : ℝ≥0∞\n𝕜 : Type u_1\nα : Type u_2\nβ : Type u_3\nhp✝ : Fact (1 ≤ p)\ninst✝¹ : SeminormedAddCommGroup α\ninst✝ : SeminormedAddCommGroup β\nhp : p ≠ ⊤\nf : WithLp p (α × β)\n⊢ ↑‖f‖₊ = ↑((‖f.1‖₊ ^ p.toReal + ‖f.2‖₊ ^ p.toReal) ^ (1 / p.toReal))",
+          "state_after": "no goals"
+        }
+      ]
+    }
+  ],
+  "unresolved_references": []
+}

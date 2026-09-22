@@ -1,0 +1,14 @@
+{
+  "source": "https://github.com/zhangir-azerbayev/ProofNet",
+  "source_file": "benchmark/valid.jsonl",
+  "split": "valid",
+  "records": [
+    {
+      "id": "Rudin|exercise_1_1a",
+      "formal_statement": "theorem exercise_1_1a\n  (x : ℝ) (y : ℚ) :\n  ( irrational x ) -> irrational ( x + y ) :=",
+      "src_header": "import .common\n\nopen real complex\nopen topological_space\nopen filter\nopen_locale real \nopen_locale topology\nopen_locale big_operators\nopen_locale complex_conjugate\nopen_locale filter\n\n\nnoncomputable theory\n\n",
+      "nl_statement": "If $r$ is rational $(r \\neq 0)$ and $x$ is irrational, prove that $r+x$ is irrational.",
+      "nl_proof": "\\begin{proof}\n\n    If $r$ and $r+x$ were both rational, then $x=r+x-r$ would also be rational.\n\n\\end{proof}"
+    }
+  ]
+}
