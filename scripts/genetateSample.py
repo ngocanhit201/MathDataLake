@@ -1,8 +1,5 @@
 """Xuất mẫu từ ba nguồn raw sang JSON, giữ nguyên các trường gốc.
 
-Cài thư viện: python3 -m pip install pyarrow
-Chạy: python3 scripts/genetateSample.py
-Mặc định mỗi nguồn 1 bản ghi; đổi số lượng ở ba lời gọi cuối tệp.
 """
 
 import json
@@ -114,6 +111,6 @@ def sampleLeanDojo(limit: int = 1) -> Path:
 
 
 if __name__ == "__main__":
-    print(sampleNuminaMath(1))
-    print(sampleProofNet(1))
-    print(sampleLeanDojo(1))
+    print(sampleNuminaMath(100))
+    print(sampleProofNet(100))
+    print(sampleLeanDojo(100))

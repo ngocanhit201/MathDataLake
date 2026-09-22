@@ -1,5 +1,4531 @@
 [
   {
+    "path": ".lake/packages/lean4/src/lean/Init/Prelude.lean",
+    "imports": [],
+    "premises": [
+      {
+        "full_name": "False.elim",
+        "code": "@[macro_inline] def False.elim {C : Sort u} (h : False) : C :=\n  h.rec",
+        "start": [
+          226,
+          1
+        ],
+        "end": [
+          237,
+          8
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "rfl",
+        "code": "@[match_pattern] def rfl {α : Sort u} {a : α} : Eq a a := Eq.refl a",
+        "start": [
+          285,
+          1
+        ],
+        "end": [
+          294,
+          68
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": ".lake/packages/lean4/src/lean/Init/Core.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init/Prelude.lean",
+      ".lake/packages/lean4/src/lean/Init/SizeOf.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Ne.symm",
+        "code": "theorem Ne.symm (h : a ≠ b) : b ≠ a",
+        "start": [
+          704,
+          1
+        ],
+        "end": [
+          704,
+          61
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "Iff.symm",
+        "code": "theorem Iff.symm (h : a ↔ b) : b ↔ a",
+        "start": [
+          813,
+          1
+        ],
+        "end": [
+          813,
+          61
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": ".lake/packages/lean4/src/lean/Init/SimpLemmas.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init/Core.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "true_and",
+        "code": "@[simp] theorem true_and (p : Prop) : (True ∧ p) = p",
+        "start": [
+          105,
+          1
+        ],
+        "end": [
+          105,
+          88
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "and_iff_left_of_imp",
+        "code": "theorem and_iff_left_of_imp  (h : a → b) : (a ∧ b) ↔ a",
+        "start": [
+          161,
+          1
+        ],
+        "end": [
+          161,
+          109
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": ".lake/packages/lean4/src/lean/Init/Data/Nat/Basic.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init/SimpLemmas.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Nat.lt_succ_self",
+        "code": "@[simp] theorem lt_succ_self (n : Nat) : n < succ n",
+        "start": [
+          358,
+          1
+        ],
+        "end": [
+          358,
+          65
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": ".lake/packages/lean4/src/lean/Init/Data/List/Basic.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init/SimpLemmas.lean",
+      ".lake/packages/lean4/src/lean/Init/Data/List/Notation.lean",
+      ".lake/packages/lean4/src/lean/Init/Data/Nat/Basic.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "List.find?",
+        "code": "def find? (p : α → Bool) : List α → Option α\n  | []    => none\n  | a::as => match p a with\n    | true  => some a\n    | false => find? p as",
+        "start": [
+          973,
+          1
+        ],
+        "end": [
+          984,
+          26
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": ".lake/packages/lean4/src/lean/Init/PropLemmas.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init/NotationExtra.lean",
+      ".lake/packages/lean4/src/lean/Init/Core.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "or_congr_left",
+        "code": "theorem or_congr_left (h : a ↔ b) : a ∨ c ↔ b ∨ c",
+        "start": [
+          78,
+          1
+        ],
+        "end": [
+          78,
+          69
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "exists_or",
+        "code": "theorem exists_or : (∃ x, p x ∨ q x) ↔ (∃ x, p x) ∨ ∃ x, q x",
+        "start": [
+          259,
+          1
+        ],
+        "end": [
+          261,
+          66
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "exists_false",
+        "code": "@[simp] theorem exists_false : ¬(∃ _a : α, False)",
+        "start": [
+          263,
+          1
+        ],
+        "end": [
+          263,
+          69
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "exists_eq",
+        "code": "@[simp] theorem exists_eq : ∃ a, a = a'",
+        "start": [
+          278,
+          1
+        ],
+        "end": [
+          278,
+          52
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "exists_and_left",
+        "code": "@[simp] theorem exists_and_left : (∃ x, b ∧ p x) ↔ b ∧ (∃ x, p x)",
+        "start": [
+          288,
+          1
+        ],
+        "end": [
+          289,
+          63
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": ".lake/packages/lean4/src/lean/Init/Data/List/Lemmas.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init/Data/Option/Lemmas.lean",
+      ".lake/packages/lean4/src/lean/Init/Data/List/BasicAux.lean",
+      ".lake/packages/lean4/src/lean/Init/Data/List/Control.lean",
+      ".lake/packages/lean4/src/lean/Init/Data/Bool.lean",
+      ".lake/packages/lean4/src/lean/Init/Hints.lean",
+      ".lake/packages/lean4/src/lean/Init/Control/Lawful/Basic.lean",
+      ".lake/packages/lean4/src/lean/Init/PropLemmas.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "List.not_mem_nil",
+        "code": "@[simp] theorem not_mem_nil (a : α) : ¬ a ∈ []",
+        "start": [
+          283,
+          1
+        ],
+        "end": [
+          283,
+          56
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "List.mem_cons",
+        "code": "@[simp] theorem mem_cons : a ∈ (b :: l) ↔ a = b ∨ a ∈ l",
+        "start": [
+          285,
+          1
+        ],
+        "end": [
+          287,
+          80
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": ".lake/packages/batteries/Batteries/Logic.lean",
+    "imports": [
+      ".lake/packages/batteries/Batteries/Tactic/Alias.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      ".lake/packages/batteries/Batteries/Tactic/Lint/Misc.lean",
+      ".lake/packages/batteries/Batteries/Tactic/Init.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "heq_iff_eq",
+        "code": "theorem heq_iff_eq : HEq a b ↔ a = b",
+        "start": [
+          37,
+          1
+        ],
+        "end": [
+          37,
+          63
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Logic/Basic.lean",
+    "imports": [
+      "Mathlib/Init/Algebra/Classes.lean",
+      ".lake/packages/batteries/Batteries/Util/LibraryNote.lean",
+      "Mathlib/Init/Function.lean",
+      ".lake/packages/batteries/Batteries/Tactic/Lint/Basic.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Init/Logic.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "eq_or_ne",
+        "code": "theorem eq_or_ne {α : Sort*} (x y : α) : x = y ∨ x ≠ y",
+        "start": [
+          212,
+          1
+        ],
+        "end": [
+          212,
+          70
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Init/Set.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Lean/Parser/Term.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Mathport/Rename.lean",
+      ".lake/packages/batteries/Batteries/Util/ExtendedBinder.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Set.Nonempty",
+        "code": "protected def Nonempty (s : Set α) : Prop :=\n  ∃ x, x ∈ s",
+        "start": [
+          215,
+          1
+        ],
+        "end": [
+          219,
+          13
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Logic/IsEmpty.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Logic/Function/Basic.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "isEmpty_or_nonempty",
+        "code": "theorem isEmpty_or_nonempty : IsEmpty α ∨ Nonempty α",
+        "start": [
+          221,
+          1
+        ],
+        "end": [
+          222,
+          63
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Init/Order/Defs.lean",
+    "imports": [
+      "Mathlib/Init/Algebra/Classes.lean",
+      "Mathlib/Mathport/Rename.lean",
+      "Mathlib/Tactic/SplitIfs.lean",
+      "Mathlib/Tactic/TypeStar.lean",
+      ".lake/packages/batteries/Batteries/Classes/Order.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Init/Data/Ordering/Basic.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "le_antisymm",
+        "code": "theorem le_antisymm : ∀ {a b : α}, a ≤ b → b ≤ a → a = b",
+        "start": [
+          188,
+          1
+        ],
+        "end": [
+          189,
+          31
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "lt_trichotomy",
+        "code": "theorem lt_trichotomy (a b : α) : a < b ∨ a = b ∨ b < a",
+        "start": [
+          313,
+          1
+        ],
+        "end": [
+          320,
+          29
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Order/Basic.lean",
+    "imports": [
+      "Mathlib/Data/Prod/Basic.lean",
+      "Mathlib/Data/Subtype.lean",
+      "Mathlib/Tactic/Spread.lean",
+      "Mathlib/Init/Order/LinearOrder.lean",
+      "Mathlib/Order/Notation.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Tactic/Convert.lean",
+      "Mathlib/Tactic/Cases.lean",
+      "Mathlib/Tactic/SimpRw.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "eq_of_forall_ge_iff",
+        "code": "theorem eq_of_forall_ge_iff [PartialOrder α] {a b : α} (H : ∀ c, a ≤ c ↔ b ≤ c) : a = b",
+        "start": [
+          543,
+          1
+        ],
+        "end": [
+          544,
+          45
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Order/Lattice.lean",
+    "imports": [
+      "Mathlib/Order/ULift.lean",
+      "Mathlib/Order/Monotone/Basic.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Tactic/GCongr/Core.lean",
+      "Mathlib/Data/Bool/Basic.lean",
+      "Mathlib/Init/Order/Defs.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "sup_comm",
+        "code": "theorem sup_comm (a b : α) : a ⊔ b = b ⊔ a",
+        "start": [
+          224,
+          1
+        ],
+        "end": [
+          224,
+          76
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "sup_assoc",
+        "code": "theorem sup_assoc (a b c : α) : a ⊔ b ⊔ c = a ⊔ (b ⊔ c)",
+        "start": [
+          229,
+          1
+        ],
+        "end": [
+          230,
+          73
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "sup_right_comm",
+        "code": "theorem sup_right_comm (a b c : α) : a ⊔ b ⊔ c = a ⊔ c ⊔ b",
+        "start": [
+          249,
+          1
+        ],
+        "end": [
+          250,
+          40
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Order/Disjoint.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Order/BoundedOrder.lean",
+      ".lake/packages/aesop/Aesop.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Disjoint.left_le_of_le_sup_left",
+        "code": "theorem Disjoint.left_le_of_le_sup_left (h : a ≤ c ⊔ b) (hd : Disjoint a c) : a ≤ b",
+        "start": [
+          215,
+          1
+        ],
+        "end": [
+          216,
+          50
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Data/Sigma/Basic.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Init/Function.lean",
+      "Mathlib/Logic/Function/Basic.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Sigma.mk.inj_iff",
+        "code": "@[simp] theorem mk.inj_iff {a₁ a₂ : α} {b₁ : β a₁} {b₂ : β a₂} :\n    Sigma.mk a₁ b₁ = ⟨a₂, b₂⟩ ↔ a₁ = a₂ ∧ HEq b₁ b₂",
+        "start": [
+          56,
+          1
+        ],
+        "end": [
+          60,
+          50
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Data/Set/Defs.lean",
+    "imports": [
+      "Mathlib/Data/Subtype.lean",
+      "Mathlib/Util/CompileInductive.lean",
+      "Mathlib/Order/Notation.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Data/SProd.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Set.mem_preimage",
+        "code": "@[simp, mfld_simps]\ntheorem mem_preimage {f : α → β} {s : Set β} {a : α} : a ∈ f ⁻¹' s ↔ f a ∈ s",
+        "start": [
+          119,
+          1
+        ],
+        "end": [
+          120,
+          88
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Data/Set/Basic.lean",
+    "imports": [
+      "Mathlib/Util/Delaborators.lean",
+      "Mathlib/Order/SymmDiff.lean",
+      "Mathlib/Order/Basic.lean",
+      "Mathlib/Data/Set/Defs.lean",
+      "Mathlib/Tactic/Tauto.lean",
+      "Mathlib/Tactic/ByContra.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Init/ZeroOne.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Set.inter_subset_inter_right",
+        "code": "@[gcongr]\ntheorem inter_subset_inter_right {s t : Set α} (u : Set α) (H : s ⊆ t) : u ∩ s ⊆ u ∩ t",
+        "start": [
+          998,
+          1
+        ],
+        "end": [
+          1000,
+          34
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "Set.compl_subset_compl",
+        "code": "@[simp]\ntheorem compl_subset_compl : sᶜ ⊆ tᶜ ↔ t ⊆ s",
+        "start": [
+          1706,
+          1
+        ],
+        "end": [
+          1708,
+          39
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Algebra/Group/Defs.lean",
+    "imports": [
+      "Mathlib/Init/Data/Int/Basic.lean",
+      "Mathlib/Tactic/Simps/Basic.lean",
+      "Mathlib/Tactic/TypeStar.lean",
+      "Mathlib/Tactic/ToAdditive.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Tactic/Lemma.lean",
+      "Mathlib/Util/AssertExists.lean",
+      "Mathlib/Init/ZeroOne.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "mul_assoc",
+        "code": "@[to_additive]\ntheorem mul_assoc : ∀ a b c : G, a * b * c = a * (b * c)",
+        "start": [
+          288,
+          1
+        ],
+        "end": [
+          290,
+          22
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "mul_comm",
+        "code": "@[to_additive]\ntheorem mul_comm : ∀ a b : G, a * b = b * a",
+        "start": [
+          331,
+          1
+        ],
+        "end": [
+          332,
+          66
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "one_mul",
+        "code": "@[to_additive (attr := simp)]\ntheorem one_mul : ∀ a : M, 1 * a = a",
+        "start": [
+          476,
+          1
+        ],
+        "end": [
+          478,
+          22
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "mul_one",
+        "code": "@[to_additive (attr := simp)]\ntheorem mul_one : ∀ a : M, a * 1 = a",
+        "start": [
+          482,
+          1
+        ],
+        "end": [
+          484,
+          22
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "pow_zero",
+        "code": "@[to_additive zero_nsmul, simp]\ntheorem pow_zero (a : M) : a ^ 0 = 1",
+        "start": [
+          650,
+          1
+        ],
+        "end": [
+          652,
+          21
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "pow_succ",
+        "code": "@[to_additive succ_nsmul]\ntheorem pow_succ (a : M) (n : ℕ) : a ^ (n + 1) = a ^ n * a",
+        "start": [
+          656,
+          1
+        ],
+        "end": [
+          658,
+          23
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "pow_one",
+        "code": "@[to_additive (attr := simp) one_nsmul]\nlemma pow_one (a : M) : a ^ 1 = a := by rw [pow_succ, pow_zero, one_mul]",
+        "start": [
+          662,
+          1
+        ],
+        "end": [
+          663,
+          73
+        ],
+        "kind": "lemma"
+      },
+      {
+        "full_name": "pow_succ'",
+        "code": "@[to_additive succ_nsmul'] lemma pow_succ' (a : M) : ∀ n, a ^ (n + 1) = a * a ^ n\n  | 0 => by simp\n  | n + 1 => by rw [pow_succ _ n, pow_succ, pow_succ', mul_assoc]",
+        "start": [
+          667,
+          1
+        ],
+        "end": [
+          669,
+          66
+        ],
+        "kind": "lemma"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Order/WithBot.lean",
+    "imports": [
+      "Mathlib/Init/Algebra/Classes.lean",
+      "Mathlib/Logic/Nontrivial/Basic.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Order/BoundedOrder.lean",
+      "Mathlib/Data/Option/Basic.lean",
+      "Mathlib/Tactic/Lift.lean",
+      "Mathlib/Data/Option/NAry.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "WithTop.ofDual_map",
+        "code": "theorem ofDual_map (f : αᵒᵈ → βᵒᵈ) (a : WithTop αᵒᵈ) :\n    WithTop.ofDual (map f a) = WithBot.map (ofDual ∘ f ∘ toDual) (WithTop.ofDual a)",
+        "start": [
+          835,
+          1
+        ],
+        "end": [
+          837,
+          6
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Data/Nat/Cast/Defs.lean",
+    "imports": [
+      "Mathlib/Tactic/SplitIfs.lean",
+      "Mathlib/Algebra/Group/Defs.lean",
+      ".lake/packages/lean4/src/lean/Init.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Nat.cast_zero",
+        "code": "@[simp, norm_cast]\ntheorem cast_zero : ((0 : ℕ) : R) = 0",
+        "start": [
+          126,
+          1
+        ],
+        "end": [
+          128,
+          32
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Data/Set/Image.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Data/Set/Subsingleton.lean",
+      "Mathlib/Order/WithBot.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Set.forall_mem_range",
+        "code": "theorem forall_mem_range {p : α → Prop} : (∀ a ∈ range f, p a) ↔ ∀ i, p (f i)",
+        "start": [
+          662,
+          1
+        ],
+        "end": [
+          662,
+          89
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Algebra/Group/Basic.lean",
+    "imports": [
+      "Mathlib/Tactic/SimpRw.lean",
+      "Mathlib/Data/Nat/Defs.lean",
+      "Mathlib/Tactic/SplitIfs.lean",
+      "Mathlib/Algebra/Group/Defs.lean",
+      "Mathlib/Data/Int/Defs.lean",
+      ".lake/packages/aesop/Aesop.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Tactic/Cases.lean",
+      "Mathlib/Logic/Function/Basic.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "div_one",
+        "code": "@[to_additive (attr := simp)]\ntheorem div_one (a : G) : a / 1 = a",
+        "start": [
+          489,
+          1
+        ],
+        "end": [
+          490,
+          64
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "div_eq_inv_mul",
+        "code": "@[to_additive]\ntheorem div_eq_inv_mul : a / b = b⁻¹ * a",
+        "start": [
+          735,
+          1
+        ],
+        "end": [
+          736,
+          52
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Algebra/Group/Hom/Basic.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Algebra/Group/Basic.lean",
+      "Mathlib/Algebra/Group/Hom/Defs.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "MonoidHom.mul_comp",
+        "code": "@[to_additive]\nlemma mul_comp [MulOneClass P] (g₁ g₂ : M →* N) (f : P →* M) :\n    (g₁ * g₂).comp f = g₁.comp f * g₂.comp f := rfl",
+        "start": [
+          217,
+          1
+        ],
+        "end": [
+          219,
+          52
+        ],
+        "kind": "lemma"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Data/Int/Cast/Basic.lean",
+    "imports": [
+      "Mathlib/Data/Int/Cast/Defs.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Algebra/Group/Basic.lean",
+      "Mathlib/Init/Data/Nat/Lemmas.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Int.cast_one",
+        "code": "@[simp, norm_cast]\ntheorem cast_one : ((1 : ℤ) : R) = 1",
+        "start": [
+          78,
+          1
+        ],
+        "end": [
+          80,
+          35
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Order/MinMax.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Order/Lattice.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "max_le_iff",
+        "code": "@[simp]\ntheorem max_le_iff : max a b ≤ c ↔ a ≤ c ∧ b ≤ c",
+        "start": [
+          47,
+          1
+        ],
+        "end": [
+          49,
+          13
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Algebra/Group/Units.lean",
+    "imports": [
+      "Mathlib/Algebra/Group/Basic.lean",
+      "Mathlib/Algebra/Group/Commute/Defs.lean",
+      "Mathlib/Tactic/Nontriviality.lean",
+      "Mathlib/Logic/Unique.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Tactic/Lift.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "isUnit_one",
+        "code": "@[to_additive (attr := simp)]\ntheorem isUnit_one [Monoid M] : IsUnit (1 : M)",
+        "start": [
+          694,
+          1
+        ],
+        "end": [
+          696,
+          11
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Data/Set/Pairwise/Basic.lean",
+    "imports": [
+      "Mathlib/Data/Set/Function.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Logic/Relation.lean",
+      "Mathlib/Logic/Pairwise.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Set.pairwise_eq_iff_exists_eq",
+        "code": "theorem pairwise_eq_iff_exists_eq [Nonempty ι] (s : Set α) (f : α → ι) :\n    (s.Pairwise fun x y => f x = f y) ↔ ∃ z, ∀ x ∈ s, f x = z",
+        "start": [
+          128,
+          1
+        ],
+        "end": [
+          134,
+          33
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Order/Interval/Set/Basic.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Data/Set/Subsingleton.lean",
+      "Mathlib/Tactic/Says.lean",
+      "Mathlib/Order/MinMax.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Set.Iio_def",
+        "code": "theorem Iio_def (a : α) : { x | x < a } = Iio a",
+        "start": [
+          91,
+          1
+        ],
+        "end": [
+          92,
+          6
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Order/SetNotation.lean",
+    "imports": [
+      "Mathlib/Mathport/Notation.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Data/Set/Defs.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "iInf",
+        "code": "def iInf [InfSet α] (s : ι → α) : α :=\n  sInf (range s)",
+        "start": [
+          64,
+          1
+        ],
+        "end": [
+          66,
+          17
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Order/Interval/Set/UnorderedInterval.lean",
+    "imports": [
+      "Mathlib/Tactic/Common.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Order/Bounds/Basic.lean",
+      "Mathlib/Order/Interval/Set/Image.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Set.uIcc_of_le",
+        "code": "@[simp]\nlemma uIcc_of_le (h : a ≤ b) : [[a, b]] = Icc a b := by rw [uIcc, inf_eq_left.2 h, sup_eq_right.2 h]",
+        "start": [
+          70,
+          1
+        ],
+        "end": [
+          71,
+          101
+        ],
+        "kind": "lemma"
+      },
+      {
+        "full_name": "Set.uIcc_of_ge",
+        "code": "@[simp]\nlemma uIcc_of_ge (h : b ≤ a) : [[a, b]] = Icc b a := by rw [uIcc, inf_eq_right.2 h, sup_eq_left.2 h]",
+        "start": [
+          74,
+          1
+        ],
+        "end": [
+          75,
+          101
+        ],
+        "kind": "lemma"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Data/Finset/Basic.lean",
+    "imports": [
+      "Mathlib/Logic/Equiv/Set.lean",
+      "Mathlib/Order/Directed.lean",
+      "Mathlib/Order/Interval/Set/Basic.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Data/Multiset/FinsetOps.lean",
+      "Mathlib/Data/Finset/Attr.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Finset.insert_ne_self",
+        "code": "theorem insert_ne_self : insert a s ≠ s ↔ a ∉ s",
+        "start": [
+          1163,
+          1
+        ],
+        "end": [
+          1164,
+          21
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "Finset.mem_erase",
+        "code": "@[simp]\ntheorem mem_erase {a b : α} {s : Finset α} : a ∈ erase s b ↔ a ≠ b ∧ a ∈ s",
+        "start": [
+          1894,
+          1
+        ],
+        "end": [
+          1896,
+          20
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "Finset.sdiff_inter_self_left",
+        "code": "@[simp]\ntheorem sdiff_inter_self_left (s t : Finset α) : s \\ (s ∩ t) = s \\ t",
+        "start": [
+          2156,
+          1
+        ],
+        "end": [
+          2158,
+          26
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "Finset.not_mem_range_self",
+        "code": "theorem not_mem_range_self : n ∉ range n",
+        "start": [
+          2963,
+          1
+        ],
+        "end": [
+          2964,
+          30
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Data/Finset/Image.lean",
+    "imports": [
+      "Mathlib/Data/Finset/Union.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Data/Fin/Basic.lean",
+      "Mathlib/Algebra/Group/Embedding.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Finset.map_map",
+        "code": "theorem map_map (f : α ↪ β) (g : β ↪ γ) (s : Finset α) : (s.map f).map g = s.map (f.trans g)",
+        "start": [
+          147,
+          1
+        ],
+        "end": [
+          148,
+          61
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "Finset.fin",
+        "code": "protected def fin (n : ℕ) (s : Finset ℕ) : Finset (Fin n) :=\n  (s.subtype _).map Fin.equivSubtype.symm.toEmbedding",
+        "start": [
+          794,
+          1
+        ],
+        "end": [
+          798,
+          54
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Algebra/Order/ZeroLEOne.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Order/Basic.lean",
+      "Mathlib/Algebra/NeZero.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "zero_le_one",
+        "code": "@[simp] lemma zero_le_one [Zero α] [One α] [LE α] [ZeroLEOneClass α] : (0 : α) ≤ 1 :=\n  ZeroLEOneClass.zero_le_one",
+        "start": [
+          25,
+          1
+        ],
+        "end": [
+          27,
+          29
+        ],
+        "kind": "lemma"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Algebra/Order/Monoid/NatCast.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Algebra/Order/ZeroLEOne.lean",
+      "Mathlib/Algebra/Order/Monoid/Unbundled/Basic.lean",
+      "Mathlib/Data/Nat/Cast/Defs.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "zero_le_two",
+        "code": "lemma zero_le_two [Preorder α] [ZeroLEOneClass α] [CovariantClass α α (·+·) (·≤·)] :\n    (0 : α) ≤ 2 := by\n  rw [← one_add_one_eq_two]\n  exact add_nonneg zero_le_one zero_le_one",
+        "start": [
+          32,
+          1
+        ],
+        "end": [
+          35,
+          43
+        ],
+        "kind": "lemma"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Algebra/Group/Invertible/Defs.lean",
+    "imports": [
+      "Mathlib/Algebra/Group/Defs.lean",
+      ".lake/packages/lean4/src/lean/Init.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "mul_invOf_mul_self_cancel",
+        "code": "theorem mul_invOf_mul_self_cancel [Monoid α] (a b : α) [Invertible b] : a * ⅟ b * b = a",
+        "start": [
+          136,
+          1
+        ],
+        "end": [
+          137,
+          19
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Algebra/Group/Action/Defs.lean",
+    "imports": [
+      "Mathlib/Tactic/Common.lean",
+      "Mathlib/Algebra/Group/TypeTags.lean",
+      "Mathlib/Algebra/Opposites.lean",
+      "Mathlib/Algebra/Group/Commute/Defs.lean",
+      "Mathlib/Logic/Function/Iterate.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Logic/Embedding/Basic.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "IsScalarTower",
+        "code": "@[to_additive VAddAssocClass] class IsScalarTower (M N α : Type*) [SMul M N] [SMul N α] [SMul M α] : Prop where\n  \n  smul_assoc : ∀ (x : M) (y : N) (z : α), (x • y) • z = x • y • z",
+        "start": [
+          245,
+          1
+        ],
+        "end": [
+          251,
+          66
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Data/Set/Finite.lean",
+    "imports": [
+      "Mathlib/Data/Finite/Basic.lean",
+      "Mathlib/Data/Finset/Basic.lean",
+      "Mathlib/Data/Set/Lattice.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Data/Set/Functor.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Set.finite_univ",
+        "code": "theorem finite_univ [Finite α] : (@univ α).Finite",
+        "start": [
+          727,
+          1
+        ],
+        "end": [
+          728,
+          17
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Order/Filter/Basic.lean",
+    "imports": [
+      "Mathlib/Data/Set/Finite.lean",
+      ".lake/packages/lean4/src/lean/Init.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Filter.EventuallyEq.symm",
+        "code": "@[symm]\ntheorem EventuallyEq.symm {f g : α → β} {l : Filter α} (H : f =ᶠ[l] g) : g =ᶠ[l] f",
+        "start": [
+          1529,
+          1
+        ],
+        "end": [
+          1531,
+          26
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "Filter.map_le_iff_le_comap",
+        "code": "theorem map_le_iff_le_comap : map m f ≤ g ↔ f ≤ comap m g",
+        "start": [
+          2342,
+          1
+        ],
+        "end": [
+          2343,
+          92
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Data/Nat/Bitwise.lean",
+    "imports": [
+      "Mathlib/Data/List/GetD.lean",
+      "Mathlib/Order/Basic.lean",
+      "Mathlib/Algebra/Ring/Nat.lean",
+      "Mathlib/Tactic/AdaptationNote.lean",
+      "Mathlib/Data/Nat/Bits.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Tactic/Common.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Nat.lor_comm",
+        "code": "theorem lor_comm (n m : ℕ) : n ||| m = m ||| n",
+        "start": [
+          327,
+          1
+        ],
+        "end": [
+          328,
+          32
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Order/Filter/Bases.lean",
+    "imports": [
+      "Mathlib/Order/Filter/Ker.lean",
+      "Mathlib/Data/Prod/PProd.lean",
+      "Mathlib/Data/Set/Countable.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Order/Filter/Prod.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Filter.HasBasis.tendsto_right_iff",
+        "code": "theorem HasBasis.tendsto_right_iff (hlb : lb.HasBasis pb sb) :\n    Tendsto f la lb ↔ ∀ i, pb i → ∀ᶠ x in la, f x ∈ sb i",
+        "start": [
+          881,
+          1
+        ],
+        "end": [
+          883,
+          63
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Algebra/Divisibility/Units.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Algebra/Group/Units.lean",
+      "Mathlib/Algebra/Divisibility/Basic.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "IsUnit.dvd",
+        "code": "@[simp]\ntheorem dvd : u ∣ a",
+        "start": [
+          79,
+          1
+        ],
+        "end": [
+          83,
+          22
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Topology/Defs/Filter.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Order/Filter/Ultrafilter.lean",
+      "Mathlib/Topology/Defs/Basic.lean",
+      "Mathlib/Data/Set/Lattice.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "nhdsWithin",
+        "code": "def nhdsWithin (x : X) (s : Set X) : Filter X :=\n  𝓝 x ⊓ 𝓟 s",
+        "start": [
+          121,
+          1
+        ],
+        "end": [
+          124,
+          12
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Topology/Basic.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Topology/Defs/Filter.lean",
+      "Mathlib/Order/Filter/Lift.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "isOpen_compl_iff",
+        "code": "@[simp] theorem isOpen_compl_iff : IsOpen sᶜ ↔ IsClosed s",
+        "start": [
+          160,
+          1
+        ],
+        "end": [
+          161,
+          42
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "isClosed_univ",
+        "code": "@[simp] theorem isClosed_univ : IsClosed (univ : Set X)",
+        "start": [
+          176,
+          1
+        ],
+        "end": [
+          176,
+          74
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "subset_interior_iff",
+        "code": "theorem subset_interior_iff : t ⊆ interior s ↔ ∃ U, IsOpen U ∧ t ⊆ U ∧ U ⊆ s",
+        "start": [
+          281,
+          1
+        ],
+        "end": [
+          283,
+          41
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "IsOpen.mem_nhds",
+        "code": "theorem IsOpen.mem_nhds (hs : IsOpen s) (hx : x ∈ s) : s ∈ 𝓝 x",
+        "start": [
+          870,
+          1
+        ],
+        "end": [
+          871,
+          44
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "Continuous.congr",
+        "code": "theorem Continuous.congr {g : X → Y} (h : Continuous f) (h' : ∀ x, f x = g x) : Continuous g",
+        "start": [
+          1555,
+          1
+        ],
+        "end": [
+          1556,
+          30
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "continuous_iff_continuousAt",
+        "code": "theorem continuous_iff_continuousAt : Continuous f ↔ ∀ x, ContinuousAt f x",
+        "start": [
+          1664,
+          1
+        ],
+        "end": [
+          1666,
+          28
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Tactic/Ring/Basic.lean",
+    "imports": [
+      "Mathlib/Tactic/NormNum/Inv.lean",
+      "Mathlib/Tactic/NormNum/Pow.lean",
+      "Mathlib/Algebra/Order/Ring/Rat.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Util/AtomM.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Mathlib.Tactic.Ring.add_pos_right",
+        "code": "theorem add_pos_right (a₁) (h : 0 < a₂) : 0 < a₁ + a₂",
+        "start": [
+          616,
+          1
+        ],
+        "end": [
+          616,
+          99
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Algebra/Order/Field/Basic.lean",
+    "imports": [
+      "Mathlib/Algebra/Order/Ring/Abs.lean",
+      "Mathlib/Algebra/Field/Basic.lean",
+      "Mathlib/Order/Bounds/OrderIso.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Algebra/Order/Field/Defs.lean",
+      "Mathlib/Algebra/GroupWithZero/Units/Equiv.lean",
+      "Mathlib/Tactic/Positivity/Core.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "div_le_iff",
+        "code": "theorem div_le_iff (hb : 0 < b) : a / b ≤ c ↔ a ≤ c * b",
+        "start": [
+          61,
+          1
+        ],
+        "end": [
+          73,
+          8
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "div_le_div_of_nonneg_right",
+        "code": "@[mono, gcongr]\nlemma div_le_div_of_nonneg_right (hab : a ≤ b) (hc : 0 ≤ c) : a / c ≤ b / c := by\n  rw [div_eq_mul_one_div a c, div_eq_mul_one_div b c]\n  exact mul_le_mul_of_nonneg_right hab (one_div_nonneg.2 hc)",
+        "start": [
+          272,
+          1
+        ],
+        "end": [
+          275,
+          61
+        ],
+        "kind": "lemma"
+      },
+      {
+        "full_name": "abs_div",
+        "code": "theorem abs_div (a b : α) : |a / b| = |a| / |b|",
+        "start": [
+          1000,
+          1
+        ],
+        "end": [
+          1001,
+          34
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Topology/ContinuousOn.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Topology/Constructions.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "nhdsWithin_pi_eq",
+        "code": "theorem nhdsWithin_pi_eq {I : Set ι} (hI : I.Finite) (s : ∀ i, Set (π i)) (x : ∀ i, π i) :\n    𝓝[pi I s] x =\n      (⨅ i ∈ I, comap (fun x => x i) (𝓝[s i] x i)) ⊓\n        ⨅ (i) (_ : i ∉ I), comap (fun x => x i) (𝓝 (x i))",
+        "start": [
+          316,
+          1
+        ],
+        "end": [
+          323,
+          26
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "nhdsWithin_pi_univ_eq",
+        "code": "theorem nhdsWithin_pi_univ_eq [Finite ι] (s : ∀ i, Set (π i)) (x : ∀ i, π i) :\n    𝓝[pi univ s] x = ⨅ i, comap (fun x => x i) (𝓝[s i] x i)",
+        "start": [
+          326,
+          1
+        ],
+        "end": [
+          328,
+          60
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Topology/Bornology/Basic.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Order/Filter/Cofinite.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Set.Finite.isBounded",
+        "code": "theorem Set.Finite.isBounded [Bornology α] {s : Set α} (hs : s.Finite) : IsBounded s",
+        "start": [
+          316,
+          1
+        ],
+        "end": [
+          317,
+          48
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Algebra/Order/AbsoluteValue.lean",
+    "imports": [
+      "Mathlib/Algebra/Order/Ring/Abs.lean",
+      "Mathlib/Algebra/GroupWithZero/Units/Lemmas.lean",
+      "Mathlib/Algebra/Order/Hom/Basic.lean",
+      "Mathlib/Algebra/Regular/Basic.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Algebra/Order/Field/Defs.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "AbsoluteValue.pos",
+        "code": "protected theorem pos {x : R} (hx : x ≠ 0) : 0 < abv x",
+        "start": [
+          121,
+          1
+        ],
+        "end": [
+          122,
+          66
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Algebra/Module/Defs.lean",
+    "imports": [
+      "Mathlib/GroupTheory/GroupAction/Units.lean",
+      "Mathlib/Algebra/Group/Hom/End.lean",
+      "Mathlib/Data/Int/Cast/Lemmas.lean",
+      "Mathlib/Algebra/SMulWithZero.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Algebra/Ring/Invertible.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "smulAddHom",
+        "code": "def smulAddHom : R →+ M →+ M :=\n  (Module.toAddMonoidEnd R M).toAddMonoidHom",
+        "start": [
+          185,
+          1
+        ],
+        "end": [
+          188,
+          45
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "smul_right_injective",
+        "code": "theorem smul_right_injective [NoZeroSMulDivisors R M] {c : R} (hc : c ≠ 0) :\n    Function.Injective (c • · : M → M)",
+        "start": [
+          556,
+          1
+        ],
+        "end": [
+          558,
+          100
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/GroupTheory/GroupAction/Hom.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Algebra/Ring/Action/Basic.lean",
+      "Mathlib/Algebra/Group/Hom/CompTypeclasses.lean",
+      "Mathlib/Algebra/Module/Defs.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "map_smul",
+        "code": "@[simp]\ntheorem map_smul {F M X Y : Type*} [SMul M X] [SMul M Y]\n    [FunLike F X Y] [MulActionHomClass F M X Y]\n    (f : F) (c : M) (x : X) : f (c • x) = c • f x",
+        "start": [
+          110,
+          1
+        ],
+        "end": [
+          114,
+          19
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Order/Interval/Finset/Basic.lean",
+    "imports": [
+      "Mathlib/Order/Interval/Finset/Defs.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Order/Cover.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Finset.Iic_filter_lt_of_lt_right",
+        "code": "theorem Iic_filter_lt_of_lt_right {α} [Preorder α] [LocallyFiniteOrderBot α] {a c : α}\n    [DecidablePred (· < c)] (h : a < c) : (Iic a).filter (· < c) = Iic a",
+        "start": [
+          362,
+          1
+        ],
+        "end": [
+          364,
+          65
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Algebra/Module/LinearMap/Defs.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/GroupTheory/GroupAction/Hom.lean",
+      "Mathlib/Algebra/Ring/CompTypeclasses.lean",
+      "Mathlib/Algebra/Module/Defs.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "LinearMap.neg_comp",
+        "code": "@[simp]\ntheorem neg_comp (f : M →ₛₗ[σ₁₂] M₂) (g : M₂ →ₛₗ[σ₂₃] N₃) : (-g).comp f = -g.comp f",
+        "start": [
+          940,
+          1
+        ],
+        "end": [
+          942,
+          6
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Algebra/Algebra/Defs.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Data/Rat/Cast/Defs.lean",
+      "Mathlib/Algebra/Module/LinearMap/Defs.lean",
+      "Mathlib/Algebra/BigOperators/Group/Finset.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Algebra",
+        "code": "class Algebra (R : Type u) (A : Type v) [CommSemiring R] [Semiring A] extends SMul R A,\n  R →+* A where\n  commutes' : ∀ r x, toRingHom r * x = x * toRingHom r\n  smul_def' : ∀ r x, r • x = toRingHom r * x",
+        "start": [
+          96,
+          1
+        ],
+        "end": [
+          104,
+          45
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "RingHom.toAlgebra",
+        "code": "def RingHom.toAlgebra {R S} [CommSemiring R] [CommSemiring S] (i : R →+* S) : Algebra R S :=\n  i.toAlgebra' fun _ => mul_comm _",
+        "start": [
+          247,
+          1
+        ],
+        "end": [
+          249,
+          35
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "Algebra.linearMap",
+        "code": "protected def linearMap : R →ₗ[R] A :=\n  { algebraMap R A with map_smul' := fun x y => by simp [Algebra.smul_def] }",
+        "start": [
+          409,
+          1
+        ],
+        "end": [
+          413,
+          77
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Algebra/Group/Subgroup/Basic.lean",
+    "imports": [
+      "Mathlib/Algebra/Group/Submonoid/Operations.lean",
+      "Mathlib/Data/Set/Image.lean",
+      "Mathlib/Algebra/Group/Conj.lean",
+      "Mathlib/Algebra/Group/Subsemigroup/Operations.lean",
+      "Mathlib/Tactic/ApplyFun.lean",
+      "Mathlib/Algebra/Order/Group/Abs.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Algebra/Group/Pi/Lemmas.lean",
+      "Mathlib/Order/Atoms.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Subgroup.prod_eq_bot_iff",
+        "code": "@[to_additive (attr := simp) prod_eq_bot_iff]\ntheorem prod_eq_bot_iff {H : Subgroup G} {K : Subgroup N} : H.prod K = ⊥ ↔ H = ⊥ ∧ K = ⊥",
+        "start": [
+          1782,
+          1
+        ],
+        "end": [
+          1784,
+          73
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Topology/Order/OrderClosed.lean",
+    "imports": [
+      "Mathlib/Topology/Separation.lean",
+      ".lake/packages/lean4/src/lean/Init.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "continuous_min",
+        "code": "theorem continuous_min : Continuous fun p : α × α => min p.1 p.2",
+        "start": [
+          856,
+          1
+        ],
+        "end": [
+          857,
+          36
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Order/Interval/Finset/Fin.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Order/Interval/Finset/Nat.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Fin.Iic_eq_finset_subtype",
+        "code": "theorem Iic_eq_finset_subtype : Iic b = (Iic (b : ℕ)).fin n",
+        "start": [
+          166,
+          1
+        ],
+        "end": [
+          167,
+          6
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "Fin.map_valEmbedding_Iic",
+        "code": "@[simp]\ntheorem map_valEmbedding_Iic : (Iic b).map Fin.valEmbedding = Iic ↑b",
+        "start": [
+          204,
+          1
+        ],
+        "end": [
+          206,
+          86
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Topology/MetricSpace/Pseudo/Defs.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Topology/EMetricSpace/Basic.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "dist_self",
+        "code": "@[simp]\ntheorem dist_self (x : α) : dist x x = 0",
+        "start": [
+          172,
+          1
+        ],
+        "end": [
+          174,
+          32
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "Metric.mem_closedBall",
+        "code": "@[simp] theorem mem_closedBall : y ∈ closedBall x ε ↔ dist y x ≤ ε",
+        "start": [
+          468,
+          1
+        ],
+        "end": [
+          468,
+          78
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "Metric.nhds_basis_closedBall_pow",
+        "code": "theorem nhds_basis_closedBall_pow {r : ℝ} (h0 : 0 < r) (h1 : r < 1) :\n    (𝓝 x).HasBasis (fun _ => True) fun n : ℕ => closedBall x (r ^ n)",
+        "start": [
+          1003,
+          1
+        ],
+        "end": [
+          1005,
+          61
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "Embedding.isSeparable_preimage",
+        "code": "protected theorem _root_.Embedding.isSeparable_preimage {f : β → α} [TopologicalSpace β]\n    (hf : Embedding f) {s : Set α} (hs : IsSeparable s) : IsSeparable (f ⁻¹' s)",
+        "start": [
+          1493,
+          1
+        ],
+        "end": [
+          1495,
+          40
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Algebra/Ring/Subsemiring/Basic.lean",
+    "imports": [
+      "Mathlib/Algebra/Module/Defs.lean",
+      "Mathlib/Algebra/Ring/Prod.lean",
+      "Mathlib/RingTheory/NonUnitalSubsemiring/Basic.lean",
+      "Mathlib/Algebra/Ring/Equiv.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/GroupTheory/Submonoid/Centralizer.lean",
+      "Mathlib/Algebra/Group/Submonoid/Membership.lean",
+      "Mathlib/Algebra/Ring/Action/Subobjects.lean",
+      "Mathlib/Data/Set/Finite.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Subsemiring.mem_closure_iff",
+        "code": "theorem mem_closure_iff {s : Set R} {x} :\n    x ∈ closure s ↔ x ∈ AddSubmonoid.closure (Submonoid.closure s : Set R)",
+        "start": [
+          841,
+          1
+        ],
+        "end": [
+          843,
+          38
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Data/Finsupp/Basic.lean",
+    "imports": [
+      "Mathlib/Algebra/Module/Basic.lean",
+      "Mathlib/Algebra/Regular/SMul.lean",
+      "Mathlib/Data/Rat/BigOperators.lean",
+      "Mathlib/GroupTheory/GroupAction/Hom.lean",
+      "Mathlib/Data/Set/Subsingleton.lean",
+      "Mathlib/Data/Finset/Preimage.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Algebra/BigOperators/Finsupp.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Finsupp.snd_sumFinsuppAddEquivProdFinsupp",
+        "code": "theorem snd_sumFinsuppAddEquivProdFinsupp {α β : Type*} (f : Sum α β →₀ M) (y : β) :\n    (sumFinsuppAddEquivProdFinsupp f).2 y = f (Sum.inr y)",
+        "start": [
+          1373,
+          1
+        ],
+        "end": [
+          1375,
+          6
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Algebra/BigOperators/Finprod.lean",
+    "imports": [
+      "Mathlib/Algebra/Module/Defs.lean",
+      "Mathlib/Data/Set/Subsingleton.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Algebra/BigOperators/GroupWithZero/Finset.lean",
+      "Mathlib/Algebra/Order/BigOperators/Group/Finset.lean",
+      "Mathlib/Algebra/Group/FiniteSupport.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "finprod_nonneg",
+        "code": "theorem finprod_nonneg {R : Type*} [OrderedCommSemiring R] {f : α → R} (hf : ∀ x, 0 ≤ f x) :\n    0 ≤ ∏ᶠ x, f x",
+        "start": [
+          278,
+          1
+        ],
+        "end": [
+          280,
+          76
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "smul_finsum",
+        "code": "theorem smul_finsum {R M : Type*} [Ring R] [AddCommGroup M] [Module R M] [NoZeroSMulDivisors R M]\n    (c : R) (f : ι → M) : (c • ∑ᶠ i, f i) = ∑ᶠ i, c • f i",
+        "start": [
+          338,
+          1
+        ],
+        "end": [
+          344,
+          83
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Topology/MetricSpace/Pseudo/Lemmas.lean",
+    "imports": [
+      "Mathlib/Topology/MetricSpace/Pseudo/Constructions.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Topology/Order/DenselyOrdered.lean",
+      "Mathlib/Data/Set/Pointwise/Interval.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Real.dist_le_of_mem_Icc_01",
+        "code": "lemma Real.dist_le_of_mem_Icc_01 {x y : ℝ} (hx : x ∈ Icc (0 : ℝ) 1) (hy : y ∈ Icc (0 : ℝ) 1) :\n    dist x y ≤ 1 := by simpa only [sub_zero] using Real.dist_le_of_mem_Icc hx hy",
+        "start": [
+          38,
+          1
+        ],
+        "end": [
+          39,
+          81
+        ],
+        "kind": "lemma"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Algebra/Algebra/Hom.lean",
+    "imports": [
+      "Mathlib/Algebra/Algebra/Basic.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Algebra/BigOperators/Finsupp.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "AlgHom.toLinearMap",
+        "code": "def toLinearMap : A →ₗ[R] B where\n  toFun := φ\n  map_add' := map_add _\n  map_smul' := map_smul _",
+        "start": [
+          348,
+          1
+        ],
+        "end": [
+          352,
+          26
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/LinearAlgebra/Span.lean",
+    "imports": [
+      "Mathlib/Algebra/Ring/Idempotents.lean",
+      "Mathlib/Algebra/Module/Submodule/Equiv.lean",
+      "Mathlib/Order/OmegaCompletePartialOrder.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Algebra/Module/Submodule/RestrictScalars.lean",
+      "Mathlib/Order/CompactlyGenerated/Basic.lean",
+      "Mathlib/Algebra/Module/Prod.lean",
+      "Mathlib/Algebra/Module/Submodule/EqLocus.lean",
+      "Mathlib/Data/Set/Pointwise/SMul.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Submodule.singleton_span_isCompactElement",
+        "code": "theorem singleton_span_isCompactElement (x : M) :\n    CompleteLattice.IsCompactElement (span R {x} : Submodule R M)",
+        "start": [
+          732,
+          1
+        ],
+        "end": [
+          738,
+          67
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Topology/Algebra/Group/Basic.lean",
+    "imports": [
+      "Mathlib/GroupTheory/GroupAction/Quotient.lean",
+      "Mathlib/GroupTheory/GroupAction/ConjAct.lean",
+      "Mathlib/Topology/Algebra/Monoid.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Topology/Algebra/Constructions.lean",
+      "Mathlib/GroupTheory/QuotientGroup.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "IsOpen.mul_closure_one_eq",
+        "code": "@[to_additive]\nlemma IsOpen.mul_closure_one_eq {U : Set G} (hU : IsOpen U) :\n    U * (closure {1} : Set G) = U :=\n  compl_mul_closure_one_eq_iff.1 (hU.isClosed_compl.mul_closure_one_eq)",
+        "start": [
+          1578,
+          1
+        ],
+        "end": [
+          1581,
+          72
+        ],
+        "kind": "lemma"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/RingTheory/Ideal/Basic.lean",
+    "imports": [
+      "Mathlib/LinearAlgebra/Finsupp.lean",
+      "Mathlib/Tactic/Abel.lean",
+      "Mathlib/Data/Nat/Choose/Sum.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Algebra/Field/IsField.lean",
+      "Mathlib/Tactic/FinCases.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Ideal.span_singleton_one",
+        "code": "@[simp]\ntheorem span_singleton_one : span ({1} : Set α) = ⊤",
+        "start": [
+          163,
+          1
+        ],
+        "end": [
+          165,
+          57
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "Ideal.isCompactElement_top",
+        "code": "theorem isCompactElement_top : CompleteLattice.IsCompactElement (⊤ : Ideal α)",
+        "start": [
+          168,
+          1
+        ],
+        "end": [
+          169,
+          86
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "Ideal.mem_sInf",
+        "code": "theorem mem_sInf {s : Set (Ideal R)} {x : R} : x ∈ sInf s ↔ ∀ ⦃I⦄, I ∈ s → x ∈ I",
+        "start": [
+          429,
+          1
+        ],
+        "end": [
+          430,
+          101
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Algebra/Periodic.lean",
+    "imports": [
+      "Mathlib/Algebra/Field/Opposite.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/GroupTheory/Coset.lean",
+      "Mathlib/Algebra/Group/Submonoid/Membership.lean",
+      "Mathlib/Algebra/Order/Archimedean.lean",
+      "Mathlib/Algebra/Group/Subgroup/ZPowers.lean",
+      "Mathlib/Algebra/Ring/NegOnePow.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Function.Periodic.image_uIcc",
+        "code": "theorem Periodic.image_uIcc [LinearOrderedAddCommGroup α] [Archimedean α] (h : Periodic f c)\n    (hc : c ≠ 0) (a : α) : f '' uIcc a (a + c) = range f",
+        "start": [
+          315,
+          1
+        ],
+        "end": [
+          321,
+          77
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Algebra/Algebra/Tower.lean",
+    "imports": [
+      "Mathlib/LinearAlgebra/Span.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Algebra/Algebra/Equiv.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "IsScalarTower.of_algebraMap_eq",
+        "code": "theorem of_algebraMap_eq [Algebra R A]\n    (h : ∀ x, algebraMap R A x = algebraMap S A (algebraMap R S x)) : IsScalarTower R S A",
+        "start": [
+          110,
+          1
+        ],
+        "end": [
+          112,
+          78
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "IsScalarTower.toAlgHom",
+        "code": "def toAlgHom : S →ₐ[R] A :=\n  { algebraMap S A with commutes' := fun _ => (algebraMap_apply _ _ _ _).symm }",
+        "start": [
+          141,
+          1
+        ],
+        "end": [
+          144,
+          80
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Algebra/Algebra/Subalgebra/Basic.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Algebra/Algebra/Operations.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Subalgebra.mem_toSubring",
+        "code": "@[simp]\ntheorem mem_toSubring {R : Type u} {A : Type v} [CommRing R] [Ring A] [Algebra R A]\n    {S : Subalgebra R A} {x} : x ∈ S.toSubring ↔ x ∈ S",
+        "start": [
+          228,
+          1
+        ],
+        "end": [
+          231,
+          10
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Order/Interval/Set/ProjIcc.lean",
+    "imports": [
+      "Mathlib/Data/Set/Function.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Order/Interval/Set/OrdConnected.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Monotone.IicExtend",
+        "code": "protected theorem Monotone.IicExtend {f : Iic b → β} (hf : Monotone f) : Monotone (IicExtend f)",
+        "start": [
+          321,
+          1
+        ],
+        "end": [
+          322,
+          27
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/RingTheory/Ideal/Maps.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/RingTheory/Ideal/Operations.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "RingHom.ker",
+        "code": "def ker : Ideal R :=\n  Ideal.comap f ⊥",
+        "start": [
+          599,
+          1
+        ],
+        "end": [
+          601,
+          18
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/MeasureTheory/OuterMeasure/AE.lean",
+    "imports": [
+      "Mathlib/MeasureTheory/OuterMeasure/Basic.lean",
+      ".lake/packages/lean4/src/lean/Init.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "MeasureTheory.ae_of_all",
+        "code": "theorem ae_of_all {p : α → Prop} (μ : F) : (∀ a, p a) → ∀ᵐ a ∂μ, p a",
+        "start": [
+          94,
+          1
+        ],
+        "end": [
+          95,
+          23
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Algebra/MonoidAlgebra/Basic.lean",
+    "imports": [
+      "Mathlib/LinearAlgebra/Finsupp.lean",
+      "Mathlib/Algebra/Algebra/NonUnitalHom.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Algebra/Module/BigOperators.lean",
+      "Mathlib/Algebra/Algebra/Equiv.lean",
+      "Mathlib/Algebra/BigOperators/Finsupp.lean",
+      "Mathlib/Data/Finsupp/Basic.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "MonoidAlgebra.single_commute",
+        "code": "theorem single_commute [Mul G] {a : G} {b : k} (ha : ∀ a', Commute a a') (hb : ∀ b', Commute b b') :\n    ∀ f : MonoidAlgebra k G, Commute (single a b) f",
+        "start": [
+          471,
+          1
+        ],
+        "end": [
+          475,
+          89
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/RingTheory/Finiteness.lean",
+    "imports": [
+      "Mathlib/LinearAlgebra/Quotient.lean",
+      "Mathlib/RingTheory/Nilpotent/Defs.lean",
+      "Mathlib/GroupTheory/Finiteness.lean",
+      "Mathlib/RingTheory/Ideal/Maps.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Algebra/Algebra/RestrictScalars.lean",
+      "Mathlib/Algebra/Algebra/Subalgebra/Basic.lean",
+      "Mathlib/LinearAlgebra/StdBasis.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Submodule.fg_ker_comp",
+        "code": "theorem fg_ker_comp {R M N P : Type*} [Ring R] [AddCommGroup M] [Module R M] [AddCommGroup N]\n    [Module R N] [AddCommGroup P] [Module R P] (f : M →ₗ[R] N) (g : N →ₗ[R] P)\n    (hf1 : (LinearMap.ker f).FG) (hf2 : (LinearMap.ker g).FG)\n    (hsur : Function.Surjective f) : (g.comp f).ker.FG",
+        "start": [
+          347,
+          1
+        ],
+        "end": [
+          357,
+          57
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "Submodule.fg_restrictScalars",
+        "code": "theorem fg_restrictScalars {R S M : Type*} [CommSemiring R] [Semiring S] [Algebra R S]\n    [AddCommGroup M] [Module S M] [Module R M] [IsScalarTower R S M] (N : Submodule S M)\n    (hfin : N.FG) (h : Function.Surjective (algebraMap R S)) :\n    (Submodule.restrictScalars R N).FG",
+        "start": [
+          360,
+          1
+        ],
+        "end": [
+          366,
+          64
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "Ideal.fg_ker_comp",
+        "code": "theorem fg_ker_comp {R S A : Type*} [CommRing R] [CommRing S] [CommRing A] (f : R →+* S)\n    (g : S →+* A) (hf : f.ker.FG) (hg : g.ker.FG) (hsur : Function.Surjective f) :\n    (g.comp f).ker.FG",
+        "start": [
+          499,
+          1
+        ],
+        "end": [
+          508,
+          99
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/LinearAlgebra/Matrix/ToLin.lean",
+    "imports": [
+      "Mathlib/Data/Matrix/Notation.lean",
+      "Mathlib/RingTheory/AlgebraTower.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Data/Matrix/Block.lean",
+      "Mathlib/LinearAlgebra/StdBasis.lean",
+      "Mathlib/Algebra/Algebra/Subalgebra/Tower.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Matrix.toLinearMapRight'_mul_apply",
+        "code": "theorem Matrix.toLinearMapRight'_mul_apply [Fintype l] [DecidableEq l] (M : Matrix l m R)\n    (N : Matrix m n R) (x) :\n    Matrix.toLinearMapRight' (M * N) x =\n      Matrix.toLinearMapRight' N (Matrix.toLinearMapRight' M x)",
+        "start": [
+          165,
+          1
+        ],
+        "end": [
+          169,
+          29
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Algebra/Algebra/NonUnitalSubalgebra.lean",
+    "imports": [
+      "Mathlib/RingTheory/NonUnitalSubring/Basic.lean",
+      "Mathlib/Algebra/Algebra/NonUnitalHom.lean",
+      "Mathlib/Data/Set/UnionLift.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/LinearAlgebra/Span.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "NonUnitalAlgebra.mem_sInf",
+        "code": "theorem mem_sInf {S : Set (NonUnitalSubalgebra R A)} {x : A} : x ∈ sInf S ↔ ∀ p ∈ S, x ∈ p",
+        "start": [
+          746,
+          1
+        ],
+        "end": [
+          747,
+          59
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "NonUnitalAlgebra.mem_iInf",
+        "code": "theorem mem_iInf {ι : Sort*} {S : ι → NonUnitalSubalgebra R A} {x : A} :\n    (x ∈ ⨅ i, S i) ↔ ∀ i, x ∈ S i",
+        "start": [
+          763,
+          1
+        ],
+        "end": [
+          764,
+          89
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/RingTheory/Multiplicity.lean",
+    "imports": [
+      "Mathlib/Algebra/BigOperators/Group/Finset.lean",
+      "Mathlib/Tactic/Linarith.lean",
+      "Mathlib/Algebra/Associated.lean",
+      "Mathlib/Algebra/SMulWithZero.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Data/Nat/PartENat.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "multiplicity.eq_coe_iff",
+        "code": "theorem eq_coe_iff {a b : α} {n : ℕ} :\n    multiplicity a b = (n : PartENat) ↔ a ^ n ∣ b ∧ ¬a ^ (n + 1) ∣ b",
+        "start": [
+          156,
+          1
+        ],
+        "end": [
+          165,
+          69
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "multiplicity.multiplicity_eq_zero",
+        "code": "theorem multiplicity_eq_zero {a b : α} : multiplicity a b = 0 ↔ ¬a ∣ b",
+        "start": [
+          202,
+          1
+        ],
+        "end": [
+          204,
+          83
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/CategoryTheory/EqToHom.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/CategoryTheory/Opposites.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "CategoryTheory.dcongr_arg",
+        "code": "theorem dcongr_arg {ι : Type*} {F G : ι → C} (α : ∀ i, F i ⟶ G i) {i j : ι} (h : i = j) :\n    α i = eqToHom (congr_arg F h) ≫ α j ≫ eqToHom (congr_arg G h.symm)",
+        "start": [
+          334,
+          1
+        ],
+        "end": [
+          337,
+          7
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Algebra/Algebra/Spectrum.lean",
+    "imports": [
+      "Mathlib/Algebra/Star/Subalgebra.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/RingTheory/Ideal/Maps.lean",
+      "Mathlib/Tactic/NoncommRing.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "spectrum.add_mem_iff",
+        "code": "theorem add_mem_iff {a : A} {r s : R} : r + s ∈ σ a ↔ r ∈ σ (-↑ₐ s + a)",
+        "start": [
+          222,
+          1
+        ],
+        "end": [
+          223,
+          58
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "spectrum.singleton_add_eq",
+        "code": "theorem singleton_add_eq (a : A) (r : R) : {r} + σ a = σ (↑ₐ r + a)",
+        "start": [
+          309,
+          1
+        ],
+        "end": [
+          311,
+          94
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/MeasureTheory/Measure/NullMeasurable.lean",
+    "imports": [
+      "Mathlib/MeasureTheory/Constructions/EventuallyMeasurable.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/MeasureTheory/Measure/AEDisjoint.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "MeasureTheory.measurableSet_of_null",
+        "code": "theorem measurableSet_of_null [μ.IsComplete] (hs : μ s = 0) : MeasurableSet s",
+        "start": [
+          442,
+          1
+        ],
+        "end": [
+          443,
+          45
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Algebra/Polynomial/Degree/Definitions.lean",
+    "imports": [
+      "Mathlib/Data/Nat/Cast/WithTop.lean",
+      "Mathlib/Data/Fintype/BigOperators.lean",
+      "Mathlib/Data/Nat/WithBot.lean",
+      "Mathlib/Data/Nat/SuccPred.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Algebra/Polynomial/Coeff.lean",
+      "Mathlib/Algebra/Polynomial/Monomial.lean",
+      "Mathlib/Algebra/MonoidAlgebra/Degree.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Polynomial.le_natDegree_of_mem_supp",
+        "code": "theorem le_natDegree_of_mem_supp (a : ℕ) : a ∈ p.support → a ≤ natDegree p",
+        "start": [
+          187,
+          1
+        ],
+        "end": [
+          188,
+          47
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Logic/Equiv/PartialEquiv.lean",
+    "imports": [
+      "Mathlib/Logic/Equiv/Defs.lean",
+      "Mathlib/Data/Set/Function.lean",
+      "Mathlib/Tactic/Core.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Tactic/Attr/Core.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "PartialEquiv.trans_assoc",
+        "code": "theorem trans_assoc (e'' : PartialEquiv γ δ) : (e.trans e').trans e'' = e.trans (e'.trans e'')",
+        "start": [
+          749,
+          1
+        ],
+        "end": [
+          751,
+          64
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "Equiv.trans_toPartialEquiv",
+        "code": "@[simp, mfld_simps]\ntheorem trans_toPartialEquiv :\n    (e.trans e').toPartialEquiv = e.toPartialEquiv.trans e'.toPartialEquiv",
+        "start": [
+          1095,
+          1
+        ],
+        "end": [
+          1099,
+          64
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "PartialEquiv.transEquiv_eq_trans",
+        "code": "theorem transEquiv_eq_trans (e : PartialEquiv α β) (e' : β ≃ γ) :\n    e.transEquiv e' = e.trans e'.toPartialEquiv",
+        "start": [
+          1145,
+          1
+        ],
+        "end": [
+          1147,
+          13
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "PartialEquiv.transEquiv_transEquiv",
+        "code": "@[simp, mfld_simps]\ntheorem transEquiv_transEquiv (e : PartialEquiv α β) (f' : β ≃ γ) (f'' : γ ≃ δ) :\n    (e.transEquiv f').transEquiv f'' = e.transEquiv (f'.trans f'')",
+        "start": [
+          1150,
+          1
+        ],
+        "end": [
+          1153,
+          75
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Topology/Sets/Opens.lean",
+    "imports": [
+      "Mathlib/Topology/ContinuousFunction/Basic.lean",
+      "Mathlib/Order/Hom/CompleteLattice.lean",
+      "Mathlib/Topology/Homeomorph.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Order/CompactlyGenerated/Basic.lean",
+      "Mathlib/Order/Copy.lean",
+      "Mathlib/Topology/Bases.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "TopologicalSpace.Opens.mk_coe",
+        "code": "@[simp] theorem mk_coe (U : Opens α) : mk (↑U) U.isOpen = U",
+        "start": [
+          121,
+          1
+        ],
+        "end": [
+          121,
+          67
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Data/Complex/Basic.lean",
+    "imports": [
+      "Mathlib/Algebra/Star/Basic.lean",
+      "Mathlib/Data/Real/Basic.lean",
+      "Mathlib/Data/Set/Image.lean",
+      "Mathlib/Algebra/CharZero/Lemmas.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Algebra/GroupWithZero/Divisibility.lean",
+      "Mathlib/Tactic/Ring.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Complex.ofReal_one",
+        "code": "@[simp, norm_cast]\ntheorem ofReal_one : ((1 : ℝ) : ℂ) = 1",
+        "start": [
+          179,
+          1
+        ],
+        "end": [
+          181,
+          6
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Algebra/Polynomial/Eval.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Algebra/Polynomial/Degree/Definitions.lean",
+      "Mathlib/Algebra/Polynomial/Induction.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Polynomial.eval₂_map",
+        "code": "theorem eval₂_map [Semiring T] (g : S →+* T) (x : T) :\n    (p.map f).eval₂ g x = p.eval₂ (g.comp f) x",
+        "start": [
+          959,
+          1
+        ],
+        "end": [
+          961,
+          53
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "Polynomial.eval₂_hom",
+        "code": "theorem eval₂_hom (x : R) : p.eval₂ f (f x) = f (p.eval x)",
+        "start": [
+          1052,
+          1
+        ],
+        "end": [
+          1053,
+          60
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Algebra/CharP/ExpChar.lean",
+    "imports": [
+      "Mathlib/Data/Nat/Prime.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Algebra/CharP/Basic.lean",
+      "Mathlib/Algebra/CharP/Algebra.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "LinearMap.iterateFrobenius_def",
+        "code": "theorem LinearMap.iterateFrobenius_def [Algebra R S] (n : ℕ) (x : S) :\n    iterateFrobenius R S p n x = x ^ p ^ n",
+        "start": [
+          389,
+          1
+        ],
+        "end": [
+          390,
+          50
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/LinearAlgebra/AffineSpace/AffineEquiv.lean",
+    "imports": [
+      "Mathlib/LinearAlgebra/GeneralLinearGroup.lean",
+      "Mathlib/LinearAlgebra/AffineSpace/AffineMap.lean",
+      ".lake/packages/lean4/src/lean/Init.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "AffineEquiv.injective_pointReflection_left_of_injective_bit0",
+        "code": "theorem injective_pointReflection_left_of_injective_bit0 (h : Injective (bit0 : V₁ → V₁)) (y : P₁) :\n    Injective fun x : P₁ => pointReflection k x y",
+        "start": [
+          587,
+          1
+        ],
+        "end": [
+          589,
+          61
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Topology/PartialHomeomorph.lean",
+    "imports": [
+      "Mathlib/Topology/Sets/Opens.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Logic/Equiv/PartialEquiv.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "PartialHomeomorph.transHomeomorph_eq_trans",
+        "code": "theorem transHomeomorph_eq_trans (e : PartialHomeomorph X Y) (f' : Y ≃ₜ Z) :\n    e.transHomeomorph f' = e.trans f'.toPartialHomeomorph",
+        "start": [
+          1443,
+          1
+        ],
+        "end": [
+          1445,
+          67
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Data/Complex/Abs.lean",
+    "imports": [
+      "Mathlib/Data/Complex/Basic.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Data/Real/Sqrt.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Complex.abs",
+        "code": "noncomputable def _root_.Complex.abs : AbsoluteValue ℂ ℝ where\n  toFun x := abs x\n  map_mul' := abs_mul\n  nonneg' := abs_nonneg'\n  eq_zero' _ := (Real.sqrt_eq_zero <| normSq_nonneg _).trans normSq_eq_zero\n  add_le' := abs_add",
+        "start": [
+          55,
+          1
+        ],
+        "end": [
+          61,
+          21
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "Complex.abs_im_le_abs",
+        "code": "theorem abs_im_le_abs (z : ℂ) : |z.im| ≤ Complex.abs z",
+        "start": [
+          165,
+          1
+        ],
+        "end": [
+          168,
+          46
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "Complex.abs_abs",
+        "code": "@[simp]\ntheorem abs_abs (z : ℂ) : |Complex.abs z| = Complex.abs z",
+        "start": [
+          198,
+          1
+        ],
+        "end": [
+          200,
+          50
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "Complex.abs_im_div_abs_le_one",
+        "code": "theorem abs_im_div_abs_le_one (z : ℂ) : |z.im / Complex.abs z| ≤ 1",
+        "start": [
+          237,
+          1
+        ],
+        "end": [
+          240,
+          75
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/MeasureTheory/Measure/Restrict.lean",
+    "imports": [
+      "Mathlib/MeasureTheory/Measure/MeasureSpace.lean",
+      ".lake/packages/lean4/src/lean/Init.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "MeasureTheory.ae_restrict_of_ae",
+        "code": "theorem ae_restrict_of_ae {s : Set α} {p : α → Prop} (h : ∀ᵐ x ∂μ, p x) : ∀ᵐ x ∂μ.restrict s, p x",
+        "start": [
+          657,
+          1
+        ],
+        "end": [
+          658,
+          51
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/RingTheory/Int/Basic.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/RingTheory/PrincipalIdealDomain.lean",
+      "Mathlib/Algebra/EuclideanDomain/Basic.lean",
+      "Mathlib/Algebra/GCDMonoid/Nat.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Int.sq_of_coprime",
+        "code": "theorem sq_of_coprime {a b c : ℤ} (h : IsCoprime a b) (heq : a * b = c ^ 2) :\n    ∃ a0 : ℤ, a = a0 ^ 2 ∨ a = -a0 ^ 2",
+        "start": [
+          72,
+          1
+        ],
+        "end": [
+          74,
+          54
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Analysis/RCLike/Basic.lean",
+    "imports": [
+      "Mathlib/Data/Real/Sqrt.lean",
+      "Mathlib/Algebra/Star/Order.lean",
+      "Mathlib/Analysis/NormedSpace/Star/Basic.lean",
+      "Mathlib/Analysis/NormedSpace/Basic.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Analysis/NormedSpace/ContinuousLinearMap.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "RCLike.re_ofReal_mul",
+        "code": "@[rclike_simps]\ntheorem re_ofReal_mul (r : ℝ) (z : K) : re (↑r * z) = r * re z",
+        "start": [
+          252,
+          1
+        ],
+        "end": [
+          254,
+          63
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "RCLike.conj_re",
+        "code": "@[simp, rclike_simps]\ntheorem conj_re (z : K) : re (conj z) = re z",
+        "start": [
+          321,
+          1
+        ],
+        "end": [
+          323,
+          22
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "RCLike.normSq_eq_def'",
+        "code": "theorem normSq_eq_def' (z : K) : normSq z = ‖z‖ ^ 2",
+        "start": [
+          452,
+          1
+        ],
+        "end": [
+          453,
+          22
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "RCLike.inv_def",
+        "code": "theorem inv_def (z : K) : z⁻¹ = conj z * ((‖z‖ ^ 2)⁻¹ : ℝ)",
+        "start": [
+          533,
+          1
+        ],
+        "end": [
+          538,
+          10
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "RCLike.inv_re",
+        "code": "@[simp, rclike_simps]\ntheorem inv_re (z : K) : re z⁻¹ = re z / normSq z",
+        "start": [
+          541,
+          1
+        ],
+        "end": [
+          543,
+          81
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Data/Complex/Exponential.lean",
+    "imports": [
+      "Mathlib/Algebra/Star/Order.lean",
+      "Mathlib/Data/Complex/Abs.lean",
+      "Mathlib/Data/Complex/BigOperators.lean",
+      "Mathlib/Data/Nat/Choose/Sum.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Algebra/Order/CauSeq/BigOperators.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Real.exp",
+        "code": "@[pp_nodot]\nnonrec def exp (x : ℝ) : ℝ :=\n  (exp x).re",
+        "start": [
+          112,
+          1
+        ],
+        "end": [
+          115,
+          13
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/MeasureTheory/Measure/Typeclasses.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/MeasureTheory/Measure/Restrict.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "MeasureTheory.ext_of_generate_finite",
+        "code": "theorem ext_of_generate_finite (C : Set (Set α)) (hA : m0 = generateFrom C) (hC : IsPiSystem C)\n    [IsFiniteMeasure μ] (hμν : ∀ s ∈ C, μ s = ν s) (h_univ : μ univ = ν univ) : μ = ν",
+        "start": [
+          1370,
+          1
+        ],
+        "end": [
+          1375,
+          78
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Algebra/Polynomial/EraseLead.lean",
+    "imports": [
+      "Mathlib/Algebra/BigOperators/Fin.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Algebra/Polynomial/Degree/Lemmas.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Polynomial.eraseLead_support",
+        "code": "theorem eraseLead_support (f : R[X]) : f.eraseLead.support = f.support.erase f.natDegree",
+        "start": [
+          42,
+          1
+        ],
+        "end": [
+          43,
+          39
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "Polynomial.lt_natDegree_of_mem_eraseLead_support",
+        "code": "theorem lt_natDegree_of_mem_eraseLead_support {a : ℕ} (h : a ∈ (eraseLead f).support) :\n    a < f.natDegree",
+        "start": [
+          95,
+          1
+        ],
+        "end": [
+          98,
+          54
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/CategoryTheory/Balanced.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/CategoryTheory/EpiMono.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "CategoryTheory.isIso_of_mono_of_epi",
+        "code": "theorem isIso_of_mono_of_epi [Balanced C] {X Y : C} (f : X ⟶ Y) [Mono f] [Epi f] : IsIso f",
+        "start": [
+          39,
+          1
+        ],
+        "end": [
+          40,
+          34
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/GroupTheory/Perm/Cycle/Type.lean",
+    "imports": [
+      "Mathlib/Algebra/GCDMonoid/Nat.lean",
+      "Mathlib/Tactic/NormNum/GCD.lean",
+      "Mathlib/GroupTheory/Perm/Closure.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Algebra/GCDMonoid/Multiset.lean",
+      "Mathlib/Data/List/Rotate.lean",
+      "Mathlib/GroupTheory/Perm/Cycle/Factors.lean",
+      "Mathlib/Combinatorics/Enumerative/Partition.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "exists_prime_addOrderOf_dvd_card",
+        "code": "theorem _root_.exists_prime_addOrderOf_dvd_card {G : Type*} [AddGroup G] [Fintype G] (p : ℕ)\n    [hp : Fact p.Prime] (hdvd : p ∣ Fintype.card G) : ∃ x : G, addOrderOf x = p",
+        "start": [
+          507,
+          1
+        ],
+        "end": [
+          511,
+          78
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Algebra/Order/ToIntervalMod.lean",
+    "imports": [
+      "Mathlib/Order/Circular.lean",
+      "Mathlib/Algebra/Module/Defs.lean",
+      "Mathlib/Algebra/ModEq.lean",
+      "Mathlib/Data/Set/Lattice.lean",
+      "Mathlib/Data/Int/SuccPred.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/GroupTheory/QuotientGroup.lean",
+      "Mathlib/Data/List/TFAE.lean",
+      "Mathlib/Algebra/Order/Archimedean.lean",
+      "Mathlib/Algebra/Periodic.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "toIcoMod_toIocMod",
+        "code": "@[simp]\ntheorem toIcoMod_toIocMod (a₁ a₂ b : α) : toIcoMod hp a₁ (toIocMod hp a₂ b) = toIcoMod hp a₁ b",
+        "start": [
+          738,
+          1
+        ],
+        "end": [
+          740,
+          75
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Topology/Connected/PathConnected.lean",
+    "imports": [
+      "Mathlib/Topology/Order/ProjIcc.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Topology/CompactOpen.lean",
+      "Mathlib/Topology/UnitInterval.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Filter.Tendsto.path_extend",
+        "code": "theorem _root_.Filter.Tendsto.path_extend\n    {l r : Y → X} {y : Y} {l₁ : Filter ℝ} {l₂ : Filter X} {γ : ∀ y, Path (l y) (r y)}\n    (hγ : Tendsto (↿γ) (𝓝 y ×ˢ l₁.map (projIcc 0 1 zero_le_one)) l₂) :\n    Tendsto (↿fun x => (γ x).extend) (𝓝 y ×ˢ l₁) l₂",
+        "start": [
+          255,
+          1
+        ],
+        "end": [
+          259,
+          32
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Topology/Instances/AddCircle.lean",
+    "imports": [
+      "Mathlib/Algebra/Ring/AddAut.lean",
+      "Mathlib/Data/Nat/Totient.lean",
+      "Mathlib/GroupTheory/Divisible.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Topology/IsLocalHomeomorph.lean",
+      "Mathlib/Topology/Connected/PathConnected.lean",
+      "Mathlib/Algebra/Order/ToIntervalMod.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "UnitAddCircle",
+        "code": "abbrev UnitAddCircle :=\n  AddCircle (1 : ℝ)",
+        "start": [
+          561,
+          1
+        ],
+        "end": [
+          563,
+          20
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Algebra/MvPolynomial/Basic.lean",
+    "imports": [
+      "Mathlib/Algebra/MonoidAlgebra/Support.lean",
+      "Mathlib/Order/SymmDiff.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Algebra/Algebra/Tower.lean",
+      "Mathlib/Algebra/Regular/Pow.lean",
+      "Mathlib/Algebra/GroupWithZero/Divisibility.lean",
+      "Mathlib/RingTheory/Adjoin/Basic.lean",
+      "Mathlib/Data/Finsupp/Antidiagonal.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "MvPolynomial.support_map_of_injective",
+        "code": "theorem support_map_of_injective (p : MvPolynomial σ R) {f : R →+* S₁} (hf : Injective f) :\n    (map f p).support = p.support",
+        "start": [
+          1450,
+          1
+        ],
+        "end": [
+          1460,
+          14
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/MeasureTheory/Order/Lattice.lean",
+    "imports": [
+      "Mathlib/MeasureTheory/Measure/AEMeasurable.lean",
+      ".lake/packages/lean4/src/lean/Init.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "AEMeasurable.inf_const",
+        "code": "@[measurability]\ntheorem AEMeasurable.inf_const (hf : AEMeasurable f μ) (c : M) :\n    AEMeasurable (fun x => f x ⊓ c) μ",
+        "start": [
+          193,
+          1
+        ],
+        "end": [
+          196,
+          48
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/MeasureTheory/Constructions/BorelSpace/Basic.lean",
+    "imports": [
+      "Mathlib/Topology/Instances/Rat.lean",
+      "Mathlib/Topology/Instances/EReal.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/MeasureTheory/Group/Arithmetic.lean",
+      "Mathlib/Topology/GDelta.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "isPiSystem_isClosed",
+        "code": "lemma isPiSystem_isClosed [TopologicalSpace α] : IsPiSystem ({s : Set α | IsClosed s}) :=\n  fun _s hs _t ht _ ↦ IsClosed.inter hs ht",
+        "start": [
+          99,
+          1
+        ],
+        "end": [
+          100,
+          43
+        ],
+        "kind": "lemma"
+      },
+      {
+        "full_name": "borel_eq_generateFrom_isClosed",
+        "code": "theorem borel_eq_generateFrom_isClosed [TopologicalSpace α] :\n    borel α = .generateFrom { s | IsClosed s }",
+        "start": [
+          102,
+          1
+        ],
+        "end": [
+          109,
+          99
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Algebra/MvPolynomial/Degrees.lean",
+    "imports": [
+      "Mathlib/Algebra/MvPolynomial/Rename.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Algebra/MonoidAlgebra/Degree.lean",
+      "Mathlib/Algebra/Order/BigOperators/Ring/Finset.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "MvPolynomial.degrees",
+        "code": "def degrees (p : MvPolynomial σ R) : Multiset σ :=\n  letI := Classical.decEq σ\n  p.support.sup fun s : σ →₀ ℕ => toMultiset s",
+        "start": [
+          75,
+          1
+        ],
+        "end": [
+          81,
+          47
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "MvPolynomial.degrees_map_of_injective",
+        "code": "theorem degrees_map_of_injective [CommSemiring S] (p : MvPolynomial σ R) {f : R →+* S}\n    (hf : Injective f) : (map f p).degrees = p.degrees",
+        "start": [
+          214,
+          1
+        ],
+        "end": [
+          216,
+          66
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Analysis/LocallyConvex/Bounded.lean",
+    "imports": [
+      "Mathlib/Topology/Algebra/UniformGroup.lean",
+      "Mathlib/Analysis/Seminorm.lean",
+      "Mathlib/Topology/Algebra/Module/Basic.lean",
+      "Mathlib/GroupTheory/GroupAction/Pointwise.lean",
+      "Mathlib/Analysis/LocallyConvex/Basic.lean",
+      "Mathlib/Analysis/LocallyConvex/BalancedCoreHull.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Topology/Bornology/Basic.lean",
+      "Mathlib/Topology/UniformSpace/Cauchy.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Bornology.vonNBornology",
+        "code": "abbrev vonNBornology : Bornology E :=\n  Bornology.ofBounded (setOf (IsVonNBounded 𝕜)) (isVonNBounded_empty 𝕜 E)\n    (fun _ hs _ ht => hs.subset ht) (fun _ hs _ => hs.union) isVonNBounded_singleton",
+        "start": [
+          339,
+          1
+        ],
+        "end": [
+          345,
+          85
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "Bornology.isBounded_iff_isVonNBounded",
+        "code": "@[simp]\ntheorem isBounded_iff_isVonNBounded {s : Set E} :\n    @IsBounded _ (vonNBornology 𝕜 E) s ↔ IsVonNBounded 𝕜 s",
+        "start": [
+          350,
+          1
+        ],
+        "end": [
+          353,
+          28
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/MeasureTheory/Integral/Lebesgue.lean",
+    "imports": [
+      "Mathlib/MeasureTheory/Measure/Count.lean",
+      "Mathlib/Dynamics/Ergodic/MeasurePreserving.lean",
+      "Mathlib/Topology/IndicatorConstPointwise.lean",
+      "Mathlib/MeasureTheory/Function/SimpleFunc.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Analysis/Normed/Group/Basic.lean",
+      "Mathlib/MeasureTheory/Constructions/BorelSpace/Real.lean",
+      "Mathlib/MeasureTheory/Measure/MutuallySingular.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "MeasureTheory.lintegral_congr_ae",
+        "code": "theorem lintegral_congr_ae {f g : α → ℝ≥0∞} (h : f =ᵐ[μ] g) : ∫⁻ a, f a ∂μ = ∫⁻ a, g a ∂μ",
+        "start": [
+          328,
+          1
+        ],
+        "end": [
+          329,
+          75
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/RingTheory/JacobsonIdeal.lean",
+    "imports": [
+      "Mathlib/RingTheory/Polynomial/Quotient.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/RingTheory/Ideal/Quotient.lean",
+      "Mathlib/RingTheory/Ideal/IsPrimary.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Ideal.le_jacobson",
+        "code": "theorem le_jacobson : I ≤ jacobson I",
+        "start": [
+          65,
+          1
+        ],
+        "end": [
+          65,
+          88
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "Ideal.eq_jacobson_iff_not_mem",
+        "code": "theorem eq_jacobson_iff_not_mem :\n    I.jacobson = I ↔ ∀ (x) (_ : x ∉ I), ∃ M : Ideal R, (I ≤ M ∧ M.IsMaximal) ∧ x ∉ M",
+        "start": [
+          163,
+          1
+        ],
+        "end": [
+          176,
+          17
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Topology/Algebra/Module/Multilinear/Bounded.lean",
+    "imports": [
+      "Mathlib/Analysis/LocallyConvex/Bounded.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Topology/Algebra/Module/Multilinear/Basic.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Bornology.IsVonNBounded.image_multilinear",
+        "code": "theorem image_multilinear [ContinuousSMul 𝕜 F] {s : Set (∀ i, E i)} (hs : IsVonNBounded 𝕜 s)\n    (f : ContinuousMultilinearMap 𝕜 E F) : IsVonNBounded 𝕜 (f '' s)",
+        "start": [
+          85,
+          1
+        ],
+        "end": [
+          96,
+          43
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/MeasureTheory/Function/EssSup.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Order/Filter/ENNReal.lean",
+      "Mathlib/MeasureTheory/Constructions/BorelSpace/Order.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "ae_essInf_le",
+        "code": "theorem ae_essInf_le\n    (hf : IsBoundedUnder (· ≥ ·) (ae μ) f := by isBoundedDefault) :\n    ∀ᵐ y ∂μ, essInf f μ ≤ f y",
+        "start": [
+          118,
+          1
+        ],
+        "end": [
+          121,
+          26
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Topology/Sets/Compacts.lean",
+    "imports": [
+      "Mathlib/Topology/Sets/Closeds.lean",
+      "Mathlib/Topology/QuasiSeparated.lean",
+      ".lake/packages/lean4/src/lean/Init.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "TopologicalSpace.PositiveCompacts.map_id",
+        "code": "@[simp]\ntheorem map_id (K : PositiveCompacts α) : K.map id continuous_id IsOpenMap.id = K",
+        "start": [
+          404,
+          1
+        ],
+        "end": [
+          406,
+          41
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Analysis/NormedSpace/AddTorsor.lean",
+    "imports": [
+      "Mathlib/Analysis/Normed/Group/AddTorsor.lean",
+      "Mathlib/Algebra/CharP/Invertible.lean",
+      "Mathlib/Topology/Instances/RealVectorSpace.lean",
+      "Mathlib/Analysis/NormedSpace/Basic.lean",
+      "Mathlib/LinearAlgebra/AffineSpace/AffineSubspace.lean",
+      ".lake/packages/lean4/src/lean/Init.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "dist_midpoint_midpoint_le",
+        "code": "theorem dist_midpoint_midpoint_le (p₁ p₂ p₃ p₄ : V) :\n    dist (midpoint ℝ p₁ p₂) (midpoint ℝ p₃ p₄) ≤ (dist p₁ p₃ + dist p₂ p₄) / 2",
+        "start": [
+          273,
+          1
+        ],
+        "end": [
+          275,
+          62
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/MeasureTheory/Function/LpSpace.lean",
+    "imports": [
+      "Mathlib/MeasureTheory/Function/LpSeminorm/TriangleInequality.lean",
+      "Mathlib/MeasureTheory/Measure/Typeclasses.lean",
+      "Mathlib/Analysis/NormedSpace/IndicatorFunction.lean",
+      "Mathlib/Topology/ContinuousFunction/Compact.lean",
+      "Mathlib/Order/Filter/IndicatorFunction.lean",
+      "Mathlib/Data/Set/Image.lean",
+      "Mathlib/MeasureTheory/Function/LpSeminorm/CompareExp.lean",
+      "Mathlib/MeasureTheory/Function/LpSeminorm/ChebyshevMarkov.lean",
+      "Mathlib/Analysis/NormedSpace/OperatorNorm/NormedSpace.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Analysis/Normed/Group/Hom.lean",
+      "Mathlib/Analysis/SpecialFunctions/Pow/Continuity.lean",
+      "Mathlib/MeasureTheory/Measure/OpenPos.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "MeasureTheory.Lp.stronglyMeasurable",
+        "code": "@[measurability]\nprotected theorem stronglyMeasurable (f : Lp E p μ) : StronglyMeasurable f",
+        "start": [
+          212,
+          1
+        ],
+        "end": [
+          214,
+          27
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/MeasureTheory/Function/L1Space.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/MeasureTheory/Function/StronglyMeasurable/Lemmas.lean",
+      "Mathlib/MeasureTheory/Function/LpOrder.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "MeasureTheory.Integrable",
+        "code": "def Integrable {α} {_ : MeasurableSpace α} (f : α → β) (μ : Measure α := by volume_tac) : Prop :=\n  AEStronglyMeasurable f μ ∧ HasFiniteIntegral f μ",
+        "start": [
+          436,
+          1
+        ],
+        "end": [
+          439,
+          51
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "MeasureTheory.integrable_congr",
+        "code": "theorem integrable_congr {f g : α → β} (h : f =ᵐ[μ] g) : Integrable f μ ↔ Integrable g μ",
+        "start": [
+          485,
+          1
+        ],
+        "end": [
+          486,
+          52
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/MeasureTheory/Integral/IntegrableOn.lean",
+    "imports": [
+      "Mathlib/MeasureTheory/Function/L1Space.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Analysis/NormedSpace/IndicatorFunction.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "MeasureTheory.IntegrableOn",
+        "code": "def IntegrableOn (f : α → E) (s : Set α) (μ : Measure α := by volume_tac) : Prop :=\n  Integrable f (μ.restrict s)",
+        "start": [
+          88,
+          1
+        ],
+        "end": [
+          91,
+          30
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "MeasureTheory.integrableOn_Lp_of_measure_ne_top",
+        "code": "theorem integrableOn_Lp_of_measure_ne_top {E} [NormedAddCommGroup E] {p : ℝ≥0∞} {s : Set α}\n    (f : Lp E p μ) (hp : 1 ≤ p) (hμs : μ s ≠ ∞) : IntegrableOn f s μ",
+        "start": [
+          373,
+          1
+        ],
+        "end": [
+          379,
+          58
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/MeasureTheory/Integral/SetToL1.lean",
+    "imports": [
+      "Mathlib/MeasureTheory/Function/SimpleFuncDenseLp.lean",
+      ".lake/packages/lean4/src/lean/Init.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "MeasureTheory.L1.SimpleFunc.setToL1SCLM_zero_left'",
+        "code": "theorem setToL1SCLM_zero_left' (hT : DominatedFinMeasAdditive μ T C)\n    (h_zero : ∀ s, MeasurableSet s → μ s < ∞ → T s = 0) (f : α →₁ₛ[μ] E) :\n    setToL1SCLM α E μ hT f = 0",
+        "start": [
+          895,
+          1
+        ],
+        "end": [
+          898,
+          31
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Analysis/Calculus/ContDiff/Defs.lean",
+    "imports": [
+      "Mathlib/Analysis/Calculus/FormalMultilinearSeries.lean",
+      "Mathlib/Analysis/Calculus/FDeriv/Equiv.lean",
+      ".lake/packages/lean4/src/lean/Init.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "contDiffOn_univ",
+        "code": "theorem contDiffOn_univ : ContDiffOn 𝕜 n f univ ↔ ContDiff 𝕜 n f",
+        "start": [
+          1455,
+          1
+        ],
+        "end": [
+          1462,
+          83
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/MeasureTheory/Integral/Bochner.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/MeasureTheory/Integral/SetToL1.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "MeasureTheory.integral_undef",
+        "code": "theorem integral_undef {f : α → G} (h : ¬Integrable f μ) : ∫ a, f a ∂μ = 0",
+        "start": [
+          833,
+          1
+        ],
+        "end": [
+          836,
+          24
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "MeasureTheory.ofReal_integral_eq_lintegral_ofReal",
+        "code": "theorem ofReal_integral_eq_lintegral_ofReal {f : α → ℝ} (hfi : Integrable f μ) (f_nn : 0 ≤ᵐ[μ] f) :\n    ENNReal.ofReal (∫ x, f x ∂μ) = ∫⁻ x, ENNReal.ofReal (f x) ∂μ",
+        "start": [
+          1204,
+          1
+        ],
+        "end": [
+          1209,
+          63
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/MeasureTheory/Integral/SetIntegral.lean",
+    "imports": [
+      "Mathlib/MeasureTheory/Integral/Bochner.lean",
+      "Mathlib/Topology/ContinuousFunction/Compact.lean",
+      "Mathlib/MeasureTheory/Function/LocallyIntegrable.lean",
+      "Mathlib/Topology/MetricSpace/ThickenedIndicator.lean",
+      "Mathlib/Analysis/NormedSpace/HahnBanach/SeparatingDual.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/MeasureTheory/Integral/IntegrableOn.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "MeasureTheory.setIntegral_congr_ae",
+        "code": "theorem setIntegral_congr_ae (hs : MeasurableSet s) (h : ∀ᵐ x ∂μ, x ∈ s → f x = g x) :\n    ∫ x in s, f x ∂μ = ∫ x in s, g x ∂μ",
+        "start": [
+          79,
+          1
+        ],
+        "end": [
+          81,
+          48
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/MeasureTheory/Function/ConditionalExpectation/AEMeasurable.lean",
+    "imports": [
+      "Mathlib/MeasureTheory/Integral/Bochner.lean",
+      "Mathlib/Order/Filter/IndicatorFunction.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/MeasureTheory/Function/LpSeminorm/Trim.lean",
+      "Mathlib/MeasureTheory/Function/StronglyMeasurable/Inner.lean",
+      "Mathlib/MeasureTheory/Function/StronglyMeasurable/Lp.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "MeasureTheory.lpMeas.aeStronglyMeasurable'",
+        "code": "theorem lpMeas.aeStronglyMeasurable' {m _ : MeasurableSpace α} {μ : Measure α}\n    (f : lpMeas F 𝕜 m p μ) : AEStronglyMeasurable' (β := F) m f μ",
+        "start": [
+          246,
+          1
+        ],
+        "end": [
+          248,
+          48
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Algebra/Homology/ShortComplex/Basic.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/CategoryTheory/Limits/Preserves/Shapes/Zero.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "CategoryTheory.ShortComplex.comp_τ₁",
+        "code": "@[reassoc] lemma comp_τ₁ (φ₁₂ : S₁ ⟶ S₂) (φ₂₃ : S₂ ⟶ S₃) :\n    (φ₁₂ ≫ φ₂₃).τ₁ = φ₁₂.τ₁ ≫ φ₂₃.τ₁ := rfl",
+        "start": [
+          107,
+          1
+        ],
+        "end": [
+          108,
+          44
+        ],
+        "kind": "lemma"
+      },
+      {
+        "full_name": "CategoryTheory.ShortComplex.zero_τ₁",
+        "code": "@[simp] lemma zero_τ₁ : Hom.τ₁ (0 : S₁ ⟶ S₂) = 0 := rfl",
+        "start": [
+          120,
+          1
+        ],
+        "end": [
+          120,
+          56
+        ],
+        "kind": "lemma"
+      },
+      {
+        "full_name": "CategoryTheory.ShortComplex.zero_τ₃",
+        "code": "@[simp] lemma zero_τ₃ : Hom.τ₃ (0 : S₁ ⟶ S₂) = 0 := rfl",
+        "start": [
+          122,
+          1
+        ],
+        "end": [
+          122,
+          56
+        ],
+        "kind": "lemma"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/MeasureTheory/Function/ConditionalExpectation/Unique.lean",
+    "imports": [
+      "Mathlib/MeasureTheory/Function/AEEqOfIntegral.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/MeasureTheory/Function/ConditionalExpectation/AEMeasurable.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "MeasureTheory.lintegral_nnnorm_le_of_forall_fin_meas_integral_eq",
+        "code": "theorem lintegral_nnnorm_le_of_forall_fin_meas_integral_eq (hm : m ≤ m0) {f g : α → ℝ}\n    (hf : StronglyMeasurable f) (hfi : IntegrableOn f s μ) (hg : StronglyMeasurable[m] g)\n    (hgi : IntegrableOn g s μ)\n    (hgf : ∀ t, MeasurableSet[m] t → μ t < ∞ → ∫ x in t, g x ∂μ = ∫ x in t, f x ∂μ)\n    (hs : MeasurableSet[m] s) (hμs : μ s ≠ ∞) : (∫⁻ x in s, ‖g x‖₊ ∂μ) ≤ ∫⁻ x in s, ‖f x‖₊ ∂μ",
+        "start": [
+          214,
+          1
+        ],
+        "end": [
+          226,
+          15
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/MeasureTheory/Function/ConditionalExpectation/CondexpL2.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Analysis/InnerProductSpace/Projection.lean",
+      "Mathlib/MeasureTheory/Function/L2Space.lean",
+      "Mathlib/MeasureTheory/Function/ConditionalExpectation/Unique.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "MeasureTheory.condexpL2",
+        "code": "noncomputable def condexpL2 (hm : m ≤ m0) : (α →₂[μ] E) →L[𝕜] lpMeas E 𝕜 m 2 μ :=\n  @orthogonalProjection 𝕜 (α →₂[μ] E) _ _ _ (lpMeas E 𝕜 m 2 μ)\n    haveI : Fact (m ≤ m0) := ⟨hm⟩\n    inferInstance",
+        "start": [
+          71,
+          1
+        ],
+        "end": [
+          75,
+          18
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "MeasureTheory.integrableOn_condexpL2_of_measure_ne_top",
+        "code": "theorem integrableOn_condexpL2_of_measure_ne_top (hm : m ≤ m0) (hμs : μ s ≠ ∞) (f : α →₂[μ] E) :\n    IntegrableOn (E := E) (condexpL2 E 𝕜 hm f) s μ",
+        "start": [
+          85,
+          1
+        ],
+        "end": [
+          88,
+          8
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "MeasureTheory.integral_condexpL2_eq_of_fin_meas_real",
+        "code": "theorem integral_condexpL2_eq_of_fin_meas_real (f : Lp 𝕜 2 μ) (hs : MeasurableSet[m] s)\n    (hμs : μ s ≠ ∞) : ∫ x in s, (condexpL2 𝕜 𝕜 hm f : α → 𝕜) x ∂μ = ∫ x in s, f x ∂μ",
+        "start": [
+          152,
+          1
+        ],
+        "end": [
+          158,
+          96
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "MeasureTheory.lintegral_nnnorm_condexpL2_le",
+        "code": "theorem lintegral_nnnorm_condexpL2_le (hs : MeasurableSet[m] s) (hμs : μ s ≠ ∞) (f : Lp ℝ 2 μ) :\n    ∫⁻ x in s, ‖(condexpL2 ℝ ℝ hm f : α → ℝ) x‖₊ ∂μ ≤ ∫⁻ x in s, ‖f x‖₊ ∂μ",
+        "start": [
+          161,
+          1
+        ],
+        "end": [
+          182,
+          71
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Topology/MetricSpace/PiNat.lean",
+    "imports": [
+      "Mathlib/Topology/MetricSpace/HausdorffDistance.lean",
+      ".lake/packages/lean4/src/lean/Init.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "PiNat.firstDiff_comm",
+        "code": "theorem firstDiff_comm (x y : ∀ n, E n) : firstDiff x y = firstDiff y x",
+        "start": [
+          88,
+          1
+        ],
+        "end": [
+          89,
+          37
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "PiNat.cylinder",
+        "code": "def cylinder (x : ∀ n, E n) (n : ℕ) : Set (∀ n, E n) :=\n  { y | ∀ i, i < n → y i = x i }",
+        "start": [
+          104,
+          1
+        ],
+        "end": [
+          109,
+          33
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "PiNat.cylinder_anti",
+        "code": "theorem cylinder_anti (x : ∀ n, E n) {m n : ℕ} (h : m ≤ n) : cylinder x n ⊆ cylinder x m",
+        "start": [
+          122,
+          1
+        ],
+        "end": [
+          123,
+          41
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "PiNat.mem_cylinder_iff_eq",
+        "code": "theorem mem_cylinder_iff_eq {x y : ∀ n, E n} {n : ℕ} :\n    y ∈ cylinder x n ↔ cylinder y n = cylinder x n",
+        "start": [
+          134,
+          1
+        ],
+        "end": [
+          147,
+          32
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "PiNat.mem_cylinder_firstDiff",
+        "code": "theorem mem_cylinder_firstDiff (x y : ∀ n, E n) : x ∈ cylinder y (firstDiff x y)",
+        "start": [
+          164,
+          1
+        ],
+        "end": [
+          165,
+          30
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "PiNat.cylinder_eq_cylinder_of_le_firstDiff",
+        "code": "theorem cylinder_eq_cylinder_of_le_firstDiff (x y : ∀ n, E n) {n : ℕ} (hn : n ≤ firstDiff x y) :\n    cylinder x n = cylinder y n",
+        "start": [
+          168,
+          1
+        ],
+        "end": [
+          172,
+          50
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "PiNat.longestPrefix",
+        "code": "def longestPrefix {E : ℕ → Type*} (x : ∀ n, E n) (s : Set (∀ n, E n)) : ℕ :=\n  shortestPrefixDiff x s - 1",
+        "start": [
+          528,
+          1
+        ],
+        "end": [
+          532,
+          29
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "PiNat.inter_cylinder_longestPrefix_nonempty",
+        "code": "theorem inter_cylinder_longestPrefix_nonempty {s : Set (∀ n, E n)} (hs : IsClosed s)\n    (hne : s.Nonempty) (x : ∀ n, E n) : (s ∩ cylinder x (longestPrefix x s)).Nonempty",
+        "start": [
+          542,
+          1
+        ],
+        "end": [
+          554,
+          10
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "PiNat.disjoint_cylinder_of_longestPrefix_lt",
+        "code": "theorem disjoint_cylinder_of_longestPrefix_lt {s : Set (∀ n, E n)} (hs : IsClosed s) {x : ∀ n, E n}\n    (hx : x ∉ s) {n : ℕ} (hn : longestPrefix x s < n) : Disjoint s (cylinder x n)",
+        "start": [
+          557,
+          1
+        ],
+        "end": [
+          563,
+          26
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "PiNat.cylinder_longestPrefix_eq_of_longestPrefix_lt_firstDiff",
+        "code": "theorem cylinder_longestPrefix_eq_of_longestPrefix_lt_firstDiff {x y : ∀ n, E n}\n    {s : Set (∀ n, E n)} (hs : IsClosed s) (hne : s.Nonempty)\n    (H : longestPrefix x s < firstDiff x y) (xs : x ∉ s) (ys : y ∉ s) :\n    cylinder x (longestPrefix x s) = cylinder y (longestPrefix y s)",
+        "start": [
+          566,
+          1
+        ],
+        "end": [
+          590,
+          58
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/MeasureTheory/Integral/IntervalIntegral.lean",
+    "imports": [
+      "Mathlib/MeasureTheory/Integral/SetIntegral.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Order/Interval/Set/Disjoint.lean",
+      "Mathlib/MeasureTheory/Measure/Lebesgue/Basic.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "IntervalIntegrable.neg",
+        "code": "theorem neg (h : IntervalIntegrable f μ a b) : IntervalIntegrable (-f) μ a b",
+        "start": [
+          187,
+          1
+        ],
+        "end": [
+          188,
+          21
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "intervalIntegral.integral_neg",
+        "code": "@[simp]\nnonrec theorem integral_neg : ∫ x in a..b, -f x ∂μ = -∫ x in a..b, f x ∂μ",
+        "start": [
+          612,
+          1
+        ],
+        "end": [
+          614,
+          51
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/MeasureTheory/Decomposition/Jordan.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/MeasureTheory/Decomposition/SignedHahn.lean",
+      "Mathlib/MeasureTheory/Measure/MutuallySingular.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "MeasureTheory.JordanDecomposition.toJordanDecomposition_toSignedMeasure",
+        "code": "@[simp]\ntheorem toJordanDecomposition_toSignedMeasure (j : JordanDecomposition α) :\n    j.toSignedMeasure.toJordanDecomposition = j",
+        "start": [
+          428,
+          1
+        ],
+        "end": [
+          431,
+          92
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "MeasureTheory.SignedMeasure.toJordanDecomposition_eq",
+        "code": "theorem toJordanDecomposition_eq {s : SignedMeasure α} {j : JordanDecomposition α}\n    (h : s = j.toSignedMeasure) : s.toJordanDecomposition = j",
+        "start": [
+          491,
+          1
+        ],
+        "end": [
+          493,
+          48
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/LinearAlgebra/BilinearForm/Basic.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Algebra/Algebra/Tower.lean",
+      "Mathlib/LinearAlgebra/BilinearMap.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "LinearMap.BilinForm.add_right",
+        "code": "theorem add_right (x y z : M) : B x (y + z) = B x y + B x z",
+        "start": [
+          76,
+          1
+        ],
+        "end": [
+          76,
+          77
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/AlgebraicTopology/SimplexCategory.lean",
+    "imports": [
+      "Mathlib/CategoryTheory/Functor/ReflectsIso.lean",
+      "Mathlib/Data/Fintype/Sort.lean",
+      "Mathlib/Order/Category/NonemptyFinLinOrd.lean",
+      "Mathlib/Tactic/Linarith.lean",
+      "Mathlib/CategoryTheory/Skeletal.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/CategoryTheory/Limits/Constructions/EpiMono.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "SimplexCategory.Hom.mk_toOrderHom",
+        "code": "@[simp]\ntheorem mk_toOrderHom {a b : SimplexCategory} (f : SimplexCategory.Hom a b) : mk f.toOrderHom = f",
+        "start": [
+          119,
+          1
+        ],
+        "end": [
+          121,
+          6
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Topology/UrysohnsLemma.lean",
+    "imports": [
+      "Mathlib/Analysis/SpecificLimits/Basic.lean",
+      "Mathlib/Topology/ContinuousFunction/Basic.lean",
+      "Mathlib/Analysis/NormedSpace/FunctionSeries.lean",
+      "Mathlib/LinearAlgebra/AffineSpace/Ordered.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Analysis/NormedSpace/AddTorsor.lean",
+      "Mathlib/Topology/GDelta.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Urysohns.CU.continuous_lim",
+        "code": "theorem continuous_lim (c : CU P) : Continuous c.lim",
+        "start": [
+          277,
+          1
+        ],
+        "end": [
+          312,
+          37
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Algebra/Homology/ShortComplex/Exact.lean",
+    "imports": [
+      "Mathlib/Algebra/Homology/ShortComplex/PreservesHomology.lean",
+      "Mathlib/Algebra/Homology/ShortComplex/Abelian.lean",
+      "Mathlib/CategoryTheory/Abelian/Exact.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/CategoryTheory/Preadditive/Injective.lean",
+      "Mathlib/Algebra/Homology/ShortComplex/QuasiIso.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "CategoryTheory.ShortComplex.mono_τ₂_of_exact_of_mono",
+        "code": "lemma mono_τ₂_of_exact_of_mono {S₁ S₂ : ShortComplex C} (φ : S₁ ⟶ S₂)\n    (h₁ : S₁.Exact) [Mono S₁.f] [Mono S₂.f] [Mono φ.τ₁] [Mono φ.τ₃] : Mono φ.τ₂ := by\n  rw [mono_iff_cancel_zero]\n  intro A x₂ hx₂\n  obtain ⟨x₁, hx₁⟩ : ∃ x₁, x₁ ≫ S₁.f = x₂ := ⟨_, h₁.lift_f x₂\n    (by simp only [← cancel_mono φ.τ₃, assoc, zero_comp, ← φ.comm₂₃, reassoc_of% hx₂])⟩\n  suffices x₁ = 0 by rw [← hx₁, this, zero_comp]\n  simp only [← cancel_mono φ.τ₁, ← cancel_mono S₂.f, assoc, φ.comm₁₂, zero_comp,\n    reassoc_of% hx₁, hx₂]",
+        "start": [
+          796,
+          1
+        ],
+        "end": [
+          804,
+          26
+        ],
+        "kind": "lemma"
+      },
+      {
+        "full_name": "CategoryTheory.ShortComplex.epi_τ₂_of_exact_of_epi",
+        "code": "lemma epi_τ₂_of_exact_of_epi {S₁ S₂ : ShortComplex C} (φ : S₁ ⟶ S₂)\n    (h₂ : S₂.Exact) [Epi S₁.g] [Epi S₂.g] [Epi φ.τ₁] [Epi φ.τ₃] : Epi φ.τ₂ := by\n  have : Mono S₁.op.f := by dsimp; infer_instance\n  have : Mono S₂.op.f := by dsimp; infer_instance\n  have : Mono (opMap φ).τ₁ := by dsimp; infer_instance\n  have : Mono (opMap φ).τ₃ := by dsimp; infer_instance\n  have := mono_τ₂_of_exact_of_mono (opMap φ) h₂.op\n  exact unop_epi_of_mono (opMap φ).τ₂",
+        "start": [
+          808,
+          1
+        ],
+        "end": [
+          815,
+          38
+        ],
+        "kind": "lemma"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/FieldTheory/Minpoly/MinpolyDiv.lean",
+    "imports": [
+      "Mathlib/FieldTheory/Minpoly/IsIntegrallyClosed.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/FieldTheory/PrimitiveElement.lean",
+      "Mathlib/FieldTheory/IsAlgClosed/Basic.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "minpolyDiv_spec",
+        "code": "lemma minpolyDiv_spec :\n    minpolyDiv R x * (X - C x) = (minpoly R x).map (algebraMap R S) := by\n  delta minpolyDiv\n  rw [mul_comm, mul_divByMonic_eq_iff_isRoot, IsRoot, eval_map, ← aeval_def, minpoly.aeval]",
+        "start": [
+          31,
+          1
+        ],
+        "end": [
+          34,
+          92
+        ],
+        "kind": "lemma"
+      },
+      {
+        "full_name": "eval_minpolyDiv_self",
+        "code": "lemma eval_minpolyDiv_self : (minpolyDiv R x).eval x = aeval x (derivative <| minpoly R x) := by\n  rw [aeval_def, ← eval_map, ← derivative_map, ← minpolyDiv_spec R x]; simp",
+        "start": [
+          59,
+          1
+        ],
+        "end": [
+          60,
+          76
+        ],
+        "kind": "lemma"
+      },
+      {
+        "full_name": "eval₂_minpolyDiv_of_eval₂_eq_zero",
+        "code": "lemma eval₂_minpolyDiv_of_eval₂_eq_zero {T} [CommRing T]\n    [IsDomain T] [DecidableEq T] {x y}\n    (σ : S →+* T) (hy : eval₂ (σ.comp (algebraMap R S)) y (minpoly R x) = 0) :\n    eval₂ σ y (minpolyDiv R x) =\n      if σ x = y then σ (aeval x (derivative <| minpoly R x)) else 0 := by\n  split_ifs with h\n  · rw [← h, eval₂_hom, eval_minpolyDiv_self]\n  · rw [← eval₂_map, ← minpolyDiv_spec] at hy\n    simpa [sub_eq_zero, Ne.symm h] using hy",
+        "start": [
+          68,
+          1
+        ],
+        "end": [
+          76,
+          44
+        ],
+        "kind": "lemma"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/CategoryTheory/Bicategory/Free.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/CategoryTheory/Bicategory/Functor/Pseudofunctor.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "CategoryTheory.FreeBicategory.mk_vcomp",
+        "code": "@[simp]\ntheorem mk_vcomp {f g h : a ⟶ b} (η : Hom₂ f g) (θ : Hom₂ g h) :\n    (η.vcomp θ).mk = (η.mk ≫ θ.mk : f ⟶ h)",
+        "start": [
+          224,
+          1
+        ],
+        "end": [
+          227,
+          6
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Algebra/Lie/Submodule.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Algebra/Lie/Subalgebra.lean",
+      "Mathlib/RingTheory/Noetherian.lean",
+      "Mathlib/RingTheory/Artinian.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "LieSubmodule.coe_toSubmodule_mk",
+        "code": "theorem coe_toSubmodule_mk (p : Submodule R M) (h) :\n    (({ p with lie_mem := h } : LieSubmodule R L M) : Submodule R M) = p",
+        "start": [
+          132,
+          1
+        ],
+        "end": [
+          133,
+          92
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Algebra/Module/LocalizedModule.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/RingTheory/Localization/Basic.lean",
+      "Mathlib/Algebra/Exact.lean",
+      "Mathlib/Algebra/Algebra/Bilinear.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "IsLocalizedModule.iso_apply_mk",
+        "code": "theorem iso_apply_mk (m : M) (s : S) :\n    iso S f (LocalizedModule.mk m s) = (IsLocalizedModule.map_units f s).unit⁻¹.val (f m)",
+        "start": [
+          850,
+          1
+        ],
+        "end": [
+          852,
+          6
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Topology/FiberBundle/Basic.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Topology/Order/LeftRightNhds.lean",
+      "Mathlib/Topology/FiberBundle/Trivialization.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "FiberBundle.mem_trivializationAt_proj_source",
+        "code": "@[simp, mfld_simps]\ntheorem mem_trivializationAt_proj_source {x : TotalSpace F E} :\n    x ∈ (trivializationAt F E x.proj).source",
+        "start": [
+          280,
+          1
+        ],
+        "end": [
+          283,
+          79
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "FiberBundleCore.mem_localTriv_target",
+        "code": "@[simp, mfld_simps]\ntheorem mem_localTriv_target (p : B × F) :\n    p ∈ (Z.localTriv i).target ↔ p.1 ∈ (Z.localTriv i).baseSet",
+        "start": [
+          690,
+          1
+        ],
+        "end": [
+          693,
+          30
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Analysis/Fourier/AddCircle.lean",
+    "imports": [
+      "Mathlib/MeasureTheory/Function/ContinuousMapDense.lean",
+      "Mathlib/Analysis/InnerProductSpace/l2Space.lean",
+      "Mathlib/Analysis/SpecialFunctions/Complex/Circle.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/MeasureTheory/Integral/FundThmCalculus.lean",
+      "Mathlib/Analysis/SpecialFunctions/ExpDeriv.lean",
+      "Mathlib/MeasureTheory/Integral/Periodic.lean",
+      "Mathlib/Topology/ContinuousFunction/StoneWeierstrass.lean",
+      "Mathlib/MeasureTheory/Group/Integral.lean",
+      "Mathlib/MeasureTheory/Function/L2Space.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "fourier",
+        "code": "def fourier (n : ℤ) : C(AddCircle T, ℂ) where\n  toFun x := toCircle (n • x :)\n  continuous_toFun := continuous_induced_dom.comp <| continuous_toCircle.comp <| continuous_zsmul _",
+        "start": [
+          104,
+          1
+        ],
+        "end": [
+          108,
+          100
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "fourier_coe_apply",
+        "code": "theorem fourier_coe_apply {n : ℤ} {x : ℝ} :\n    fourier n (x : AddCircle T) = Complex.exp (2 * π * Complex.I * n * x / T)",
+        "start": [
+          117,
+          1
+        ],
+        "end": [
+          123,
+          16
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "hasDerivAt_fourier",
+        "code": "theorem hasDerivAt_fourier (n : ℤ) (x : ℝ) :\n    HasDerivAt (fun y : ℝ => fourier n (y : AddCircle T))\n      (2 * π * I * n / T * fourier n (x : AddCircle T)) x",
+        "start": [
+          487,
+          1
+        ],
+        "end": [
+          495,
+          15
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Analysis/Fourier/FourierTransform.lean",
+    "imports": [
+      "Mathlib/MeasureTheory/Measure/Haar/InnerProductSpace.lean",
+      "Mathlib/MeasureTheory/Measure/Haar/OfBasis.lean",
+      "Mathlib/Analysis/Complex/Circle.lean",
+      "Mathlib/MeasureTheory/Integral/SetIntegral.lean",
+      "Mathlib/MeasureTheory/Constructions/Prod/Integral.lean",
+      "Mathlib/Algebra/Group/AddChar.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/MeasureTheory/Group/Integral.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Real.fourierChar_apply",
+        "code": "theorem fourierChar_apply (x : ℝ) : 𝐞 x = Complex.exp (↑(2 * π * x) * Complex.I)",
+        "start": [
+          337,
+          1
+        ],
+        "end": [
+          338,
+          6
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
     "path": "Mathlib/Analysis/NormedSpace/ProdLp.lean",
     "imports": [
       "Mathlib/Analysis/MeanInequalities.lean",
@@ -32,6 +4558,1081 @@
           59
         ],
         "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/NumberTheory/NumberField/Embeddings.lean",
+    "imports": [
+      "Mathlib/NumberTheory/NumberField/Basic.lean",
+      "Mathlib/Topology/Instances/Complex.lean",
+      "Mathlib/Analysis/Complex/Polynomial.lean",
+      "Mathlib/RingTheory/Norm.lean",
+      "Mathlib/NumberTheory/NumberField/Norm.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/RingTheory/RootsOfUnity/Basic.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "NumberField.InfinitePlace.isReal_iff",
+        "code": "theorem isReal_iff {w : InfinitePlace K} :\n    IsReal w ↔ ComplexEmbedding.IsReal (embedding w)",
+        "start": [
+          378,
+          1
+        ],
+        "end": [
+          382,
+          37
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "NumberField.InfinitePlace.isComplex_iff",
+        "code": "theorem isComplex_iff {w : InfinitePlace K} :\n    IsComplex w ↔ ¬ComplexEmbedding.IsReal (embedding w)",
+        "start": [
+          385,
+          1
+        ],
+        "end": [
+          392,
+          68
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "NumberField.InfinitePlace.not_isReal_iff_isComplex",
+        "code": "@[simp]\ntheorem not_isReal_iff_isComplex {w : InfinitePlace K} : ¬IsReal w ↔ IsComplex w",
+        "start": [
+          400,
+          1
+        ],
+        "end": [
+          402,
+          33
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Algebra/Homology/ShortComplex/ShortExact.lean",
+    "imports": [
+      "Mathlib/Algebra/Homology/ShortComplex/Exact.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/CategoryTheory/Preadditive/Injective.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "CategoryTheory.ShortComplex.isIso₂_of_shortExact_of_isIso₁₃",
+        "code": "lemma isIso₂_of_shortExact_of_isIso₁₃ [Balanced C] {S₁ S₂ : ShortComplex C} (φ : S₁ ⟶ S₂)\n    (h₁ : S₁.ShortExact) (h₂ : S₂.ShortExact) [IsIso φ.τ₁] [IsIso φ.τ₃] : IsIso φ.τ₂ := by\n  have := h₁.mono_f\n  have := h₂.mono_f\n  have := h₁.epi_g\n  have := h₂.epi_g\n  have := mono_τ₂_of_exact_of_mono φ h₁.exact\n  have := epi_τ₂_of_exact_of_epi φ h₂.exact\n  apply isIso_of_mono_of_epi",
+        "start": [
+          142,
+          1
+        ],
+        "end": [
+          150,
+          29
+        ],
+        "kind": "lemma"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Algebra/Homology/ShortComplex/SnakeLemma.lean",
+    "imports": [
+      "Mathlib/Algebra/Homology/ShortComplex/Limits.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/CategoryTheory/Abelian/Refinements.lean",
+      "Mathlib/Algebra/Homology/ExactSequence.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "CategoryTheory.ShortComplex.SnakeInput.w₁₃_τ₁",
+        "code": "@[reassoc (attr := simp)] lemma w₁₃_τ₁ : S.v₁₂.τ₁ ≫ S.v₂₃.τ₁ = 0 := by\n  rw [← comp_τ₁, S.w₁₃, zero_τ₁]",
+        "start": [
+          124,
+          1
+        ],
+        "end": [
+          125,
+          33
+        ],
+        "kind": "lemma"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/RingTheory/MvPolynomial/WeightedHomogeneous.lean",
+    "imports": [
+      "Mathlib/Algebra/Order/Monoid/Canonical/Defs.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Algebra/GradedMonoid.lean",
+      "Mathlib/Algebra/MvPolynomial/Basic.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "MvPolynomial.isWeightedHomogeneous_one",
+        "code": "theorem isWeightedHomogeneous_one (w : σ → M) : IsWeightedHomogeneous w (1 : MvPolynomial σ R) 0",
+        "start": [
+          233,
+          1
+        ],
+        "end": [
+          235,
+          30
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/LinearAlgebra/Matrix/ZPow.lean",
+    "imports": [
+      "Mathlib/Data/Int/Bitwise.lean",
+      "Mathlib/LinearAlgebra/Matrix/NonsingularInverse.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/LinearAlgebra/Matrix/Symmetric.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Matrix.zpow_bit0'",
+        "code": "theorem zpow_bit0' (A : M) (n : ℤ) : A ^ bit0 n = (A * A) ^ n",
+        "start": [
+          312,
+          1
+        ],
+        "end": [
+          313,
+          67
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/MeasureTheory/Measure/HasOuterApproxClosed.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Topology/MetricSpace/ThickenedIndicator.lean",
+      "Mathlib/MeasureTheory/Integral/Lebesgue.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "MeasureTheory.measure_isClosed_eq_of_forall_lintegral_eq_of_isFiniteMeasure",
+        "code": "theorem measure_isClosed_eq_of_forall_lintegral_eq_of_isFiniteMeasure {Ω : Type*}\n    [MeasurableSpace Ω] [TopologicalSpace Ω] [HasOuterApproxClosed Ω]\n    [OpensMeasurableSpace Ω] {μ ν : Measure Ω} [IsFiniteMeasure μ]\n    (h : ∀ (f : Ω →ᵇ ℝ≥0), ∫⁻ x, f x ∂μ = ∫⁻ x, f x ∂ν) {F : Set Ω} (F_closed : IsClosed F) :\n    μ F = ν F",
+        "start": [
+          205,
+          1
+        ],
+        "end": [
+          221,
+          40
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "MeasureTheory.ext_of_forall_lintegral_eq_of_IsFiniteMeasure",
+        "code": "theorem ext_of_forall_lintegral_eq_of_IsFiniteMeasure {Ω : Type*}\n    [MeasurableSpace Ω] [TopologicalSpace Ω] [HasOuterApproxClosed Ω]\n    [BorelSpace Ω] {μ ν : Measure Ω} [IsFiniteMeasure μ]\n    (h : ∀ (f : Ω →ᵇ ℝ≥0), ∫⁻ x, f x ∂μ = ∫⁻ x, f x ∂ν) :\n    μ = ν",
+        "start": [
+          223,
+          1
+        ],
+        "end": [
+          234,
+          75
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Computability/Primrec.lean",
+    "imports": [
+      "Mathlib/Data/List/GetD.lean",
+      "Mathlib/Logic/Function/Iterate.lean",
+      "Mathlib/Algebra/Order/Ring/Nat.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Logic/Equiv/List.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Primrec.vector_ofFn'",
+        "code": "theorem vector_ofFn' {n} : Primrec (@Vector.ofFn α n)",
+        "start": [
+          1419,
+          1
+        ],
+        "end": [
+          1420,
+          11
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Topology/AlexandrovDiscrete.lean",
+    "imports": [
+      "Mathlib/Data/Set/Image.lean",
+      "Mathlib/Topology/Inseparable.lean",
+      "Mathlib/Topology/Compactness/Compact.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Topology/Bases.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "exterior_subset_iff",
+        "code": "lemma exterior_subset_iff : exterior s ⊆ t ↔ ∃ U, IsOpen U ∧ s ⊆ U ∧ U ⊆ t :=\n  ⟨fun h ↦ ⟨exterior s, isOpen_exterior, subset_exterior, h⟩,\n    fun ⟨_U, hU, hsU, hUt⟩ ↦ (exterior_minimal hsU hU).trans hUt⟩",
+        "start": [
+          169,
+          1
+        ],
+        "end": [
+          171,
+          66
+        ],
+        "kind": "lemma"
+      },
+      {
+        "full_name": "gc_exterior_interior",
+        "code": "lemma gc_exterior_interior : GaloisConnection (exterior : Set α → Set α) interior :=\n  fun s t ↦ by simp [exterior_subset_iff, subset_interior_iff]",
+        "start": [
+          182,
+          1
+        ],
+        "end": [
+          183,
+          63
+        ],
+        "kind": "lemma"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/NumberTheory/Zsqrtd/Basic.lean",
+    "imports": [
+      "Mathlib/RingTheory/PrincipalIdealDomain.lean",
+      "Mathlib/Algebra/Associated.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Algebra/Star/Unitary.lean",
+      "Mathlib/Tactic/Ring.lean",
+      "Mathlib/RingTheory/Int/Basic.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Zsqrtd.sub_re",
+        "code": "@[simp]\ntheorem sub_re (z w : ℤ√d) : (z - w).re = z.re - w.re",
+        "start": [
+          174,
+          1
+        ],
+        "end": [
+          176,
+          6
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Algebra/Homology/ShortComplex/ModuleCat.lean",
+    "imports": [
+      "Mathlib/Algebra/Homology/ShortComplex/ConcreteCategory.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Algebra/Category/ModuleCat/Colimits.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "CategoryTheory.ShortComplex.moduleCat_exact_iff_range_eq_ker",
+        "code": "lemma moduleCat_exact_iff_range_eq_ker :\n    S.Exact ↔ LinearMap.range S.f = LinearMap.ker S.g := by\n  rw [moduleCat_exact_iff_ker_sub_range]\n  constructor\n  · intro h\n    ext x\n    constructor\n    · rintro ⟨y, hy⟩\n      rw [← hy]\n      simp only [LinearMap.mem_ker, moduleCat_zero_apply]\n    · intro hx\n      exact h hx\n  · intro h\n    rw [h]",
+        "start": [
+          57,
+          1
+        ],
+        "end": [
+          70,
+          11
+        ],
+        "kind": "lemma"
+      },
+      {
+        "full_name": "CategoryTheory.ShortComplex.Exact.moduleCat_of_range_eq_ker",
+        "code": "lemma Exact.moduleCat_of_range_eq_ker {X₁ X₂ X₃ : ModuleCat.{v} R}\n    (f : X₁ ⟶ X₂) (g : X₂ ⟶ X₃) (hfg : LinearMap.range f = LinearMap.ker g) :\n    (moduleCatMkOfKerLERange f g (by rw [hfg])).Exact := by\n  simpa only [moduleCat_exact_iff_range_eq_ker] using hfg",
+        "start": [
+          95,
+          1
+        ],
+        "end": [
+          98,
+          58
+        ],
+        "kind": "lemma"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/RingTheory/Polynomial/Eisenstein/IsIntegral.lean",
+    "imports": [
+      "Mathlib/RingTheory/Norm.lean",
+      "Mathlib/RingTheory/Polynomial/Cyclotomic/Expand.lean",
+      "Mathlib/Data/Nat/Choose/Dvd.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/RingTheory/IntegrallyClosed.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "mem_adjoin_of_smul_prime_smul_of_minpoly_isEisensteinAt",
+        "code": "theorem mem_adjoin_of_smul_prime_smul_of_minpoly_isEisensteinAt {B : PowerBasis K L}\n    (hp : Prime p) (hBint : IsIntegral R B.gen) {z : L} (hzint : IsIntegral R z)\n    (hz : p • z ∈ adjoin R ({B.gen} : Set L)) (hei : (minpoly R B.gen).IsEisensteinAt 𝓟) :\n    z ∈ adjoin R ({B.gen} : Set L)",
+        "start": [
+          233,
+          1
+        ],
+        "end": [
+          370,
+          73
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "mem_adjoin_of_smul_prime_pow_smul_of_minpoly_isEisensteinAt",
+        "code": "theorem mem_adjoin_of_smul_prime_pow_smul_of_minpoly_isEisensteinAt {B : PowerBasis K L}\n    (hp : Prime p) (hBint : IsIntegral R B.gen) {n : ℕ} {z : L} (hzint : IsIntegral R z)\n    (hz : p ^ n • z ∈ adjoin R ({B.gen} : Set L)) (hei : (minpoly R B.gen).IsEisensteinAt 𝓟) :\n    z ∈ adjoin R ({B.gen} : Set L)",
+        "start": [
+          373,
+          1
+        ],
+        "end": [
+          386,
+          98
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Probability/ProbabilityMassFunction/Basic.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/MeasureTheory/Measure/Dirac.lean",
+      "Mathlib/Topology/Instances/ENNReal.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "PMF.toOuterMeasure_apply_eq_zero_iff",
+        "code": "theorem toOuterMeasure_apply_eq_zero_iff : p.toOuterMeasure s = 0 ↔ Disjoint p.support s",
+        "start": [
+          196,
+          1
+        ],
+        "end": [
+          198,
+          62
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "PMF.toMeasure_apply_eq_toOuterMeasure_apply",
+        "code": "theorem toMeasure_apply_eq_toOuterMeasure_apply (hs : MeasurableSet s) :\n    p.toMeasure s = p.toOuterMeasure s",
+        "start": [
+          255,
+          1
+        ],
+        "end": [
+          257,
+          40
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "PMF.toMeasure_apply_eq_zero_iff",
+        "code": "theorem toMeasure_apply_eq_zero_iff (hs : MeasurableSet s) :\n    p.toMeasure s = 0 ↔ Disjoint p.support s",
+        "start": [
+          269,
+          1
+        ],
+        "end": [
+          271,
+          88
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Data/Finset/Sups.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Data/Finset/NAry.lean",
+      "Mathlib/Data/Set/Sups.lean",
+      "Mathlib/Data/Finset/Slice.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Finset.image_subset_sups_left",
+        "code": "lemma image_subset_sups_left : b ∈ t → s.image (· ⊔ b) ⊆ s ⊻ t := image_subset_image₂_left",
+        "start": [
+          104,
+          1
+        ],
+        "end": [
+          104,
+          91
+        ],
+        "kind": "lemma"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Algebra/Quaternion.lean",
+    "imports": [
+      "Mathlib/LinearAlgebra/Dimension/StrongRankCondition.lean",
+      "Mathlib/LinearAlgebra/FreeModule/Finite/Basic.lean",
+      "Mathlib/LinearAlgebra/FreeModule/Basic.lean",
+      "Mathlib/SetTheory/Cardinal/Ordinal.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Algebra/Algebra/Equiv.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Quaternion.sub_im",
+        "code": "@[simp] nonrec theorem sub_im : (a - b).im = a.im - b.im",
+        "start": [
+          1003,
+          1
+        ],
+        "end": [
+          1003,
+          71
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Deprecated/Subgroup.lean",
+    "imports": [
+      "Mathlib/Deprecated/Submonoid.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Algebra/Group/Subgroup/Basic.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "IsSubgroup.iInter",
+        "code": "@[to_additive]\ntheorem IsSubgroup.iInter {ι : Sort*} {s : ι → Set G} (hs : ∀ y : ι, IsSubgroup (s y)) :\n    IsSubgroup (Set.iInter s)",
+        "start": [
+          112,
+          1
+        ],
+        "end": [
+          117,
+          83
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/RingTheory/IsAdjoinRoot.lean",
+    "imports": [
+      "Mathlib/FieldTheory/Minpoly/IsIntegrallyClosed.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Algebra/Polynomial/AlgebraMap.lean",
+      "Mathlib/RingTheory/PowerBasis.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "IsAdjoinRootMonic.coeff_apply_coe",
+        "code": "theorem coeff_apply_coe (h : IsAdjoinRootMonic S f) (z : S) (i : Fin (natDegree f)) :\n    h.coeff z i = h.basis.repr z i",
+        "start": [
+          526,
+          1
+        ],
+        "end": [
+          527,
+          66
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Data/Matroid/Restrict.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Data/Matroid/Dual.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Matroid.restrict_finite",
+        "code": "theorem restrict_finite {R : Set α} (hR : R.Finite) : (M ↾ R).Finite",
+        "start": [
+          133,
+          1
+        ],
+        "end": [
+          134,
+          7
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "Matroid.Restriction.finite",
+        "code": "theorem Restriction.finite {M : Matroid α} [M.Finite] (h : N ≤r M) : N.Finite",
+        "start": [
+          335,
+          1
+        ],
+        "end": [
+          337,
+          53
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/CategoryTheory/Bicategory/Coherence.lean",
+    "imports": [
+      "Mathlib/CategoryTheory/Bicategory/Free.lean",
+      "Mathlib/CategoryTheory/Bicategory/LocallyDiscrete.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/CategoryTheory/PathCategory.lean",
+      "Mathlib/CategoryTheory/Functor/FullyFaithful.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "CategoryTheory.FreeBicategory.normalizeIso",
+        "code": "@[simp]\ndef normalizeIso {a : B} :\n    ∀ {b c : B} (p : Path a b) (f : Hom b c),\n      (preinclusion B).map ⟨p⟩ ≫ f ≅ (preinclusion B).map ⟨normalizeAux p f⟩\n  | _, _, _, Hom.of _ => Iso.refl _\n  | _, _, _, Hom.id b => ρ_ _\n  | _, _, p, Hom.comp f g =>\n    (α_ _ _ _).symm ≪≫ whiskerRightIso (normalizeIso p f) g ≪≫ normalizeIso (normalizeAux p f) g",
+        "start": [
+          132,
+          1
+        ],
+        "end": [
+          142,
+          97
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "CategoryTheory.FreeBicategory.normalizeAux_congr",
+        "code": "theorem normalizeAux_congr {a b c : B} (p : Path a b) {f g : Hom b c} (η : f ⟶ g) :\n    normalizeAux p f = normalizeAux p g",
+        "start": [
+          145,
+          1
+        ],
+        "end": [
+          157,
+          21
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "CategoryTheory.FreeBicategory.normalize_naturality",
+        "code": "theorem normalize_naturality {a b c : B} (p : Path a b) {f g : Hom b c} (η : f ⟶ g) :\n    (preinclusion B).map ⟨p⟩ ◁ η ≫ (normalizeIso p g).hom =\n      (normalizeIso p f).hom ≫\n        (preinclusion B).map₂ (eqToHom (Discrete.ext _ _ (normalizeAux_congr p η)))",
+        "start": [
+          160,
+          1
+        ],
+        "end": [
+          183,
+          14
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Topology/MetricSpace/GromovHausdorffRealized.lean",
+    "imports": [
+      "Mathlib/Topology/MetricSpace/HausdorffDistance.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Topology/MetricSpace/Gluing.lean",
+      "Mathlib/Topology/ContinuousFunction/Bounded.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "GromovHausdorff.one_le_maxVar",
+        "code": "private theorem one_le_maxVar : 1 ≤ maxVar X Y",
+        "start": [
+          76,
+          1
+        ],
+        "end": [
+          79,
+          90
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Analysis/Fourier/FourierTransformDeriv.lean",
+    "imports": [
+      "Mathlib/Analysis/Calculus/ParametricIntegral.lean",
+      "Mathlib/Analysis/Calculus/LineDeriv/IntegrationByParts.lean",
+      "Mathlib/Analysis/Calculus/FDeriv/Analytic.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Analysis/Fourier/FourierTransform.lean",
+      "Mathlib/Analysis/Calculus/ContDiff/Bounds.lean",
+      "Mathlib/Analysis/Fourier/AddCircle.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Real.hasDerivAt_fourierChar",
+        "code": "lemma hasDerivAt_fourierChar (x : ℝ) : HasDerivAt (𝐞 · : ℝ → ℂ) (2 * π * I * 𝐞 x) x := by\n  have h1 (y : ℝ) : 𝐞 y = fourier 1 (y : UnitAddCircle) := by\n    rw [fourierChar_apply, fourier_coe_apply]\n    push_cast\n    ring_nf\n  simpa only [h1, Int.cast_one, ofReal_one, div_one, mul_one] using hasDerivAt_fourier 1 1 x",
+        "start": [
+          93,
+          1
+        ],
+        "end": [
+          98,
+          93
+        ],
+        "kind": "lemma"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/GroupTheory/Nilpotent.lean",
+    "imports": [
+      "Mathlib/Tactic/TFAE.lean",
+      "Mathlib/GroupTheory/Sylow.lean",
+      "Mathlib/Data/Nat/Factorization/Basic.lean",
+      "Mathlib/GroupTheory/Solvable.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/GroupTheory/PGroup.lean",
+      "Mathlib/GroupTheory/QuotientGroup.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "lowerCentralSeries_eq_bot_iff_nilpotencyClass_le",
+        "code": "theorem lowerCentralSeries_eq_bot_iff_nilpotencyClass_le {n : ℕ} :\n    lowerCentralSeries G n = ⊥ ↔ Group.nilpotencyClass G ≤ n",
+        "start": [
+          433,
+          1
+        ],
+        "end": [
+          441,
+          40
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "lowerCentralSeries_prod",
+        "code": "theorem lowerCentralSeries_prod (n : ℕ) :\n    lowerCentralSeries (G₁ × G₂) n = (lowerCentralSeries G₁ n).prod (lowerCentralSeries G₂ n)",
+        "start": [
+          704,
+          1
+        ],
+        "end": [
+          715,
+          84
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "nilpotencyClass_prod",
+        "code": "theorem nilpotencyClass_prod [IsNilpotent G₁] [IsNilpotent G₂] :\n    Group.nilpotencyClass (G₁ × G₂) =\n    max (Group.nilpotencyClass G₁) (Group.nilpotencyClass G₂)",
+        "start": [
+          728,
+          1
+        ],
+        "end": [
+          734,
+          46
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/GroupTheory/CoprodI.lean",
+    "imports": [
+      "Mathlib/Algebra/FreeMonoid/Basic.lean",
+      "Mathlib/GroupTheory/FreeGroup/IsFreeGroup.lean",
+      "Mathlib/Data/List/Chain.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Algebra/Group/Submonoid/Membership.lean",
+      "Mathlib/GroupTheory/Congruence/Basic.lean",
+      "Mathlib/SetTheory/Cardinal/Basic.lean",
+      "Mathlib/Data/Set/Pointwise/SMul.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Monoid.CoprodI.NeWord.inv",
+        "code": "def inv : ∀ {i j} (_w : NeWord G i j), NeWord G j i\n  | _, _, singleton x h => singleton x⁻¹ (mt inv_eq_one.mp h)\n  | _, _, append w₁ h w₂ => append w₂.inv h.symm w₁.inv",
+        "start": [
+          844,
+          1
+        ],
+        "end": [
+          847,
+          56
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "Monoid.CoprodI.NeWord.inv_head",
+        "code": "@[simp]\ntheorem inv_head {i j} (w : NeWord G i j) : w.inv.head = w.last⁻¹",
+        "start": [
+          855,
+          1
+        ],
+        "end": [
+          857,
+          32
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/MeasureTheory/Measure/Tilted.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/MeasureTheory/Decomposition/RadonNikodym.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "MeasureTheory.tilted_of_not_integrable",
+        "code": "@[simp]\nlemma tilted_of_not_integrable (hf : ¬ Integrable (fun x ↦ exp (f x)) μ) : μ.tilted f = 0 := by\n  rw [Measure.tilted, integral_undef hf]\n  simp",
+        "start": [
+          41,
+          1
+        ],
+        "end": [
+          44,
+          7
+        ],
+        "kind": "lemma"
+      },
+      {
+        "full_name": "MeasureTheory.tilted_apply",
+        "code": "lemma tilted_apply (μ : Measure α) [SFinite μ] (f : α → ℝ) (s : Set α) :\n    μ.tilted f s = ∫⁻ a in s, ENNReal.ofReal (exp (f a) / ∫ x, exp (f x) ∂μ) ∂μ := by\n  rw [Measure.tilted, withDensity_apply' _ s]",
+        "start": [
+          101,
+          1
+        ],
+        "end": [
+          103,
+          46
+        ],
+        "kind": "lemma"
+      },
+      {
+        "full_name": "MeasureTheory.tilted_apply_eq_ofReal_integral",
+        "code": "lemma tilted_apply_eq_ofReal_integral [SFinite μ] (f : α → ℝ) (s : Set α) :\n    μ.tilted f s = ENNReal.ofReal (∫ a in s, exp (f a) / ∫ x, exp (f x) ∂μ ∂μ) := by\n  by_cases hf : Integrable (fun x ↦ exp (f x)) μ\n  · rw [tilted_apply _ _, ← ofReal_integral_eq_lintegral_ofReal]\n    · exact hf.integrableOn.div_const _\n    · exact ae_of_all _ (fun _ ↦ by positivity)\n  · simp [tilted_of_not_integrable hf, integral_undef hf]",
+        "start": [
+          114,
+          1
+        ],
+        "end": [
+          120,
+          58
+        ],
+        "kind": "lemma"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/LinearAlgebra/CliffordAlgebra/Star.lean",
+    "imports": [
+      "Mathlib/LinearAlgebra/CliffordAlgebra/Conjugation.lean",
+      ".lake/packages/lean4/src/lean/Init.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "CliffordAlgebra.star_def",
+        "code": "theorem star_def (x : CliffordAlgebra Q) : star x = reverse (involute x)",
+        "start": [
+          41,
+          1
+        ],
+        "end": [
+          42,
+          6
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "CliffordAlgebra.star_smul",
+        "code": "@[simp]\ntheorem star_smul (r : R) (x : CliffordAlgebra Q) : star (r • x) = r • star x",
+        "start": [
+          53,
+          1
+        ],
+        "end": [
+          58,
+          46
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/RepresentationTheory/GroupCohomology/LowDegree.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/RepresentationTheory/Invariants.lean",
+      "Mathlib/Algebra/Homology/ShortComplex/ModuleCat.lean",
+      "Mathlib/RepresentationTheory/GroupCohomology/Basic.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "groupCohomology.H1LequivOfIsTrivial_comp_H1_π",
+        "code": "theorem H1LequivOfIsTrivial_comp_H1_π [A.IsTrivial] :\n    (H1LequivOfIsTrivial A).comp (H1_π A) = oneCocyclesLequivOfIsTrivial A",
+        "start": [
+          675,
+          1
+        ],
+        "end": [
+          677,
+          11
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Analysis/SumIntegralComparisons.lean",
+    "imports": [
+      "Mathlib/Data/Set/Function.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/MeasureTheory/Integral/IntervalIntegral.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "MonotoneOn.integral_le_sum_Ico",
+        "code": "theorem MonotoneOn.integral_le_sum_Ico (hab : a ≤ b) (hf : MonotoneOn f (Set.Icc a b)) :\n    (∫ x in a..b, f x) ≤ ∑ i ∈ Finset.Ico a b, f (i + 1 : ℕ)",
+        "start": [
+          168,
+          1
+        ],
+        "end": [
+          171,
+          39
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Algebra/Order/Interval/Basic.lean",
+    "imports": [
+      "Mathlib/Order/Interval/Basic.lean",
+      "Mathlib/Data/Set/Pointwise/Basic.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Algebra/Order/BigOperators/Group/Finset.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "NonemptyInterval.toProd_mul",
+        "code": "@[to_additive (attr := simp) toProd_add]\ntheorem toProd_mul : (s * t).toProd = s.toProd * t.toProd",
+        "start": [
+          161,
+          1
+        ],
+        "end": [
+          163,
+          6
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/RingTheory/DedekindDomain/Different.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/RingTheory/DedekindDomain/IntegralClosure.lean",
+      "Mathlib/NumberTheory/KummerDedekind.lean",
+      "Mathlib/RingTheory/Discriminant.lean",
+      "Mathlib/RingTheory/DedekindDomain/Ideal.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Submodule.le_traceDual_iff_map_le_one",
+        "code": "lemma le_traceDual_iff_map_le_one {I J : Submodule B L} :\n    I ≤ Jᵛ ↔ ((I * J : Submodule B L).restrictScalars A).map\n      ((trace K L).restrictScalars A) ≤ 1 := by\n  rw [Submodule.map_le_iff_le_comap, Submodule.restrictScalars_mul, Submodule.mul_le]\n  simp [SetLike.le_def, mem_traceDual]",
+        "start": [
+          63,
+          1
+        ],
+        "end": [
+          67,
+          39
+        ],
+        "kind": "lemma"
+      },
+      {
+        "full_name": "Submodule.le_traceDual_mul_iff",
+        "code": "lemma le_traceDual_mul_iff {I J J' : Submodule B L} :\n    I ≤ (J * J')ᵛ ↔ I * J ≤ J'ᵛ := by\n  simp_rw [le_traceDual_iff_map_le_one, mul_assoc]",
+        "start": [
+          69,
+          1
+        ],
+        "end": [
+          71,
+          51
+        ],
+        "kind": "lemma"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Analysis/Calculus/ContDiff/FiniteDimension.lean",
+    "imports": [
+      "Mathlib/Analysis/NormedSpace/FiniteDimension.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Analysis/Calculus/ContDiff/Basic.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "contDiffOn_clm_apply",
+        "code": "theorem contDiffOn_clm_apply {n : ℕ∞} {f : E → F →L[𝕜] G} {s : Set E} [FiniteDimensional 𝕜 F] :\n    ContDiffOn 𝕜 n f s ↔ ∀ y, ContDiffOn 𝕜 n (fun x => f x y) s",
+        "start": [
+          34,
+          1
+        ],
+        "end": [
+          43,
+          74
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "contDiff_clm_apply_iff",
+        "code": "theorem contDiff_clm_apply_iff {n : ℕ∞} {f : E → F →L[𝕜] G} [FiniteDimensional 𝕜 F] :\n    ContDiff 𝕜 n f ↔ ∀ y, ContDiff 𝕜 n fun x => f x y",
+        "start": [
+          46,
+          1
+        ],
+        "end": [
+          48,
+          52
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/NumberTheory/LSeries/Linearity.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/NumberTheory/LSeries/Basic.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "LSeriesSummable.neg_iff",
+        "code": "@[simp]\nlemma LSeriesSummable.neg_iff {f : ℕ → ℂ} {s : ℂ} :\n    LSeriesSummable (-f) s ↔ LSeriesSummable f s :=\n  ⟨fun H ↦ neg_neg f ▸ H.neg, .neg⟩",
+        "start": [
+          66,
+          1
+        ],
+        "end": [
+          69,
+          36
+        ],
+        "kind": "lemma"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/Data/Finmap.lean",
+    "imports": [
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/Data/Part.lean",
+      "Mathlib/Data/List/AList.lean",
+      "Mathlib/Data/Finset/Sigma.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "Finmap.toFinmap_nil",
+        "code": "@[simp]\ntheorem toFinmap_nil [DecidableEq α] : ([].toFinmap : Finmap β) = ∅",
+        "start": [
+          220,
+          1
+        ],
+        "end": [
+          222,
+          6
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "Finmap.not_mem_empty",
+        "code": "theorem not_mem_empty {a : α} : a ∉ (∅ : Finmap β)",
+        "start": [
+          225,
+          1
+        ],
+        "end": [
+          226,
+          26
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "Finmap.mem_insert",
+        "code": "@[simp]\ntheorem mem_insert {a a' : α} {b' : β a'} {s : Finmap β} : a ∈ insert a' b' s ↔ a = a' ∨ a ∈ s",
+        "start": [
+          491,
+          1
+        ],
+        "end": [
+          493,
+          34
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "Finmap.toFinmap_cons",
+        "code": "theorem toFinmap_cons (a : α) (b : β a) (xs : List (Sigma β)) :\n    List.toFinmap (⟨a, b⟩ :: xs) = insert a b xs.toFinmap",
+        "start": [
+          519,
+          1
+        ],
+        "end": [
+          521,
+          6
+        ],
+        "kind": "commanddeclaration"
+      },
+      {
+        "full_name": "Finmap.mem_list_toFinmap",
+        "code": "theorem mem_list_toFinmap (a : α) (xs : List (Sigma β)) :\n    a ∈ xs.toFinmap ↔ ∃ b : β a, Sigma.mk a b ∈ xs",
+        "start": [
+          524,
+          1
+        ],
+        "end": [
+          534,
+          36
+        ],
+        "kind": "commanddeclaration"
+      }
+    ]
+  },
+  {
+    "path": "Mathlib/RingTheory/Regular/RegularSequence.lean",
+    "imports": [
+      "Mathlib/RingTheory/Regular/IsSMulRegular.lean",
+      "Mathlib/Logic/Equiv/TransferInstance.lean",
+      ".lake/packages/lean4/src/lean/Init.lean",
+      "Mathlib/RingTheory/Artinian.lean",
+      "Mathlib/RingTheory/Ideal/LocalRing.lean"
+    ],
+    "premises": [
+      {
+        "full_name": "RingTheory.Sequence.isWeaklyRegular_append_iff'",
+        "code": "lemma isWeaklyRegular_append_iff' (rs₁ rs₂ : List R) :\n    IsWeaklyRegular M (rs₁ ++ rs₂) ↔\n      IsWeaklyRegular M rs₁ ∧\n        IsWeaklyRegular (M ⧸ (Ideal.ofList rs₁ • ⊤ : Submodule R M))\n          (rs₂.map (Ideal.Quotient.mk (Ideal.ofList rs₁))) :=\n  Iff.trans (isWeaklyRegular_append_iff M rs₁ rs₂) <| and_congr_right' <|\n    Iff.symm <| isWeaklyRegular_map_algebraMap_iff (R ⧸ Ideal.ofList rs₁) _ rs₂",
+        "start": [
+          383,
+          1
+        ],
+        "end": [
+          389,
+          80
+        ],
+        "kind": "lemma"
       }
     ]
   }

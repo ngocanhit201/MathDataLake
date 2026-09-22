@@ -36,7 +36,7 @@ Hiện tại project chỉ tải về theo commit cố định; không có manif
 ### Tuần 1
 Nhiệm vụ bắt buộc: Khảo sát nguồn, giấy phép, trường dữ liệu; chốt câu hỏi và lược đồ bản nháp.
 Minh chứng cần nộp: Đề cương 1 trang; danh mục nguồn; sơ đồ lược đồ v0.1.
-Mô tả:
+Mô tả: 
 
 ### Tuần 2
 Nhiệm vụ bắt buộc: Tải snapshot nhỏ; xây manifest và data contract; tạo 100–1.000 bản ghi mẫu.
