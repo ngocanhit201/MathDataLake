@@ -110,7 +110,67 @@ def sampleLeanDojo(limit: int = 1) -> Path:
     return output
 
 
+def generateOverview() -> Path:
+    """Đếm bản ghi raw của 3 nguồn và xuất data_sample/overview.json.
+
+    Tổng LeanDojo dùng random để không cộng trùng hai cách chia dữ liệu.
+    Corpus được đếm riêng theo dòng (tệp Lean), không cộng vào số định lý.
+    ProofNet chỉ đếm benchmark, không gồm dữ liệu sinh và kết quả đánh giá.
+    """
+    import pyarrow.parquet as pq
+
+    numina_splits = {}
+    for split in ("train", "test"):
+        paths = sorted((Config.RAW_DATA / "numinaMath/data").glob(f"{split}-*.parquet"))
+        if not paths:
+            raise FileNotFoundError(f"Không tìm thấy dữ liệu NuminaMath {split}")
+        numina_splits[split] = sum(pq.ParquetFile(path).metadata.num_rows for path in paths)
+
+    proofnet_splits = {}
+    for split in ("valid", "test"):
+        path = Config.RAW_DATA / "proofNet/benchmark" / f"{split}.jsonl"
+        with path.open(encoding="utf-8") as source:
+            proofnet_splits[split] = sum(1 for line in source if line.strip())
+
+    lean_root = Config.RAW_DATA / "leandojoBenchmark4v10/leandojo_benchmark_4"
+    lean_splits = {}
+    for strategy in ("random", "novel_premises"):
+        lean_splits[strategy] = {}
+        for split in ("train", "val", "test"):
+            with (lean_root / strategy / f"{split}.json").open(encoding="utf-8") as source:
+                lean_splits[strategy][split] = len(json.load(source))
+    with (lean_root / "corpus.jsonl").open(encoding="utf-8") as source:
+        corpus_rows = sum(1 for line in source if line.strip())
+
+    sources = {
+        "numinaMath": {
+            "splits": numina_splits,
+            "total_rows": sum(numina_splits.values()),
+        },
+        "proofNet": {
+            "scope": "benchmark",
+            "splits": proofnet_splits,
+            "total_rows": sum(proofnet_splits.values()),
+        },
+        "leanDojo": {
+            "splits": lean_splits,
+            "total_rows_strategy": "random",
+            "total_rows": sum(lean_splits["random"].values()),
+            "corpus_rows": corpus_rows,
+        },
+    }
+    overview = {
+        "sources": sources,
+        "total_rows": sum(source["total_rows"] for source in sources.values()),
+    }
+    SAMPLE_DIR.mkdir(parents=True, exist_ok=True)
+    output = SAMPLE_DIR / "overview.json"
+    output.write_text(json.dumps(overview, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    return output
+
+
 if __name__ == "__main__":
     print(sampleNuminaMath(100))
     print(sampleProofNet(100))
     print(sampleLeanDojo(100))
+    print(generateOverview())

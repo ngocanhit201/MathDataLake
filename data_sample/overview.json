@@ -1,0 +1,37 @@
+{
+  "sources": {
+    "numinaMath": {
+      "splits": {
+        "train": 859494,
+        "test": 100
+      },
+      "total_rows": 859594
+    },
+    "proofNet": {
+      "scope": "benchmark",
+      "splits": {
+        "valid": 185,
+        "test": 186
+      },
+      "total_rows": 371
+    },
+    "leanDojo": {
+      "splits": {
+        "random": {
+          "train": 118517,
+          "val": 2000,
+          "test": 2000
+        },
+        "novel_premises": {
+          "train": 118517,
+          "val": 2000,
+          "test": 2000
+        }
+      },
+      "total_rows_strategy": "random",
+      "total_rows": 122517,
+      "corpus_rows": 5674
+    }
+  },
+  "total_rows": 982482
+}
