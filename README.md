@@ -28,7 +28,7 @@ Nguyên tắc
 
 ## Hiện trạng
 
-- Đã lấy được dữ liêu từ 3 nguồn
+- Cơ bản hoàn thiện tuần 5
 
 ## Cấu trúc và yêu cầu bàn giao (Theo đề bài)
 
@@ -46,22 +46,6 @@ Nguyên tắc
 | `report.pdf` hoặc `report.docx` | Báo cáo dài 8–12 trang.                                                                                           |
 | `slides/demo/`                     | Slide và kịch bản trình diễn.                                                                                    |
 | `contributions.md`                 | Vai trò, issue, pull request và phần bảo vệ của từng thành viên.                                             |
-
-## Mô tả file
-
-initData: tạo dữ liệu
-
-## To do
-
-Không tải và đưa toàn bộ dữ liệu lớn vào Git.
-
-Chỉ lưu sample hợp pháp, manifest, checksum và script tải/tạo dữliệu.
-
-Mọi split phải cố định và được version hóa
-
-Hiện tại project chỉ tải về theo commit cố định; không có manifest, checksum.... theo yêu cầu
-
-=> Cần lưu theo yêu cầu
 
 ## Kế hoạch thực hiện 10 tuần
 
@@ -109,7 +93,7 @@ Nhiệm vụ bắt buộc: Thiết kế Parquet, partition và kích thước t�
 Minh chứng cần nộp: Ba cấu hình lưu trữ; bảng số tệp, dung lượng, thời gian đọc.
 Mô tả:
 
-Kết quả: 
+Kết quả:
 
 - đã 3 cấu hình lưu trữ chia thành 4-8-16 file results/
 - đã có kết quả đo hiệu năng đọc file tại results\performance\parquet
