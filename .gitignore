@@ -45,4 +45,7 @@ temp/
 /results/raw/
 #jsonl
 /results/jsonl/
+/results/parquet_4/
+/results/parquet_8/
+/results/parquet_16/
 **/.cache/

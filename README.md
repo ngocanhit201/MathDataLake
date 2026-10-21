@@ -13,10 +13,9 @@ khả năng chịu tải.
 • Có error analysis, ablation và limitation; không chỉ báo cáo kết quả tốt nhất.
 • Code, dữ liệu mẫu, data/model card và README phải cho phép một thành viên khác chạy lại.
 
-Của riêng nhóm
 • Mỗi thành viên có vai trò chính và dự phòng; khi bảo vệ phải hiểu toàn bộ pipeline.
 • Việc sử dụng AI phải được khai báo; mọi code và kết luận do AI hỗ trợ vẫn phải được nhóm kiểm chứng.
-
+Của riêng nhóm
 
 1. Có thể hợp nhất dữ liệu văn bản, LaTeX và Lean vào một lược đồ chung mà không làm mất thông tin nguồn gốc hay
    không?
@@ -54,13 +53,13 @@ initData: tạo dữ liệu
 
 ## To do
 
-### YÊU CẦU DỮ IỆU
+Không tải và đưa toàn bộ dữ liệu lớn vào Git.
 
-```
-Không tải và đưa toàn bộ dữ liệu lớn vào Git. Chỉ lưu sample hợp pháp, manifest, checksum và script tải/tạo dữliệu. Mọi split phải cố định và được version hóa
+Chỉ lưu sample hợp pháp, manifest, checksum và script tải/tạo dữliệu.
+
+Mọi split phải cố định và được version hóa
 
 Hiện tại project chỉ tải về theo commit cố định; không có manifest, checksum.... theo yêu cầu
-```
 
 => Cần lưu theo yêu cầu
 
@@ -69,18 +68,15 @@ Hiện tại project chỉ tải về theo commit cố định; không có manif
 ### Tuần 1
 
 Nhiệm vụ bắt buộc: Khảo sát nguồn, giấy phép, trường dữ liệu; chốt câu hỏi và lược đồ bản nháp.
-Minh chứng cần nộp: Đề cương 1 trang; danh mục nguồn; sơ đồ lược đồ v0.1.
-Mô tả:
-
-Đã làm
+Minh chứng cần nộp: Đề cương 1 trang; danh mục nguồn; sơ đồ lược đồ v0.1.Kết quả: đã có dữ liệu
 
 ### Tuần 2
 
 Nhiệm vụ bắt buộc: Tải snapshot nhỏ; xây manifest và data contract; tạo 100–1.000 bản ghi mẫu.
 Minh chứng cần nộp: Raw sample; checksum; data contract; script đọc được cả ba nguồn.
-Mô tả:
 
 Kết quả:
+
 ->  Raw sample: đã có data_sample
 
 -> script đọc được cả ba nguồn: đã có
@@ -93,7 +89,11 @@ Kết quả:
 
 Nhiệm vụ bắt buộc: Cài baseline JSONL + Python tuần tự; đo thời gian và dung lượng.
 Minh chứng cần nộp: Baseline chạy end-to-end; raw timing; báo cáo lỗi đọc.
-Mô tả:
+Kết quả
+
+Về JSONL; src\baseline\jsonl: chạy file pipeline.py trong các thư mục để tạo jsonl chuẩn, kết quả  lưu tại results\jsonl
+
+Về hiệu năng: chạy code data.py và chart.py tại src\performance\jsonl, kết quả lưu tại results\performance
 
 ### Tuần 4
 
@@ -101,11 +101,18 @@ Nhiệm vụ bắt buộc: Cài Spark ETL; chuẩn hóa text, LaTeX, Lean và me
 Minh chứng cần nộp: Pipeline Spark v0.1; kiểm thử lược đồ; báo cáo tỷ lệ lỗi.
 Mô tả:
 
+Kết quả: đã có pipieline xử lý tại src\baseline\parquet\pipeline.py, đã có lược đồ
+
 ### Tuần 5
 
 Nhiệm vụ bắt buộc: Thiết kế Parquet, partition và kích thước tệp; xử lý small-file problem.
 Minh chứng cần nộp: Ba cấu hình lưu trữ; bảng số tệp, dung lượng, thời gian đọc.
 Mô tả:
+
+Kết quả: 
+
+- đã 3 cấu hình lưu trữ chia thành 4-8-16 file results/
+- đã có kết quả đo hiệu năng đọc file tại results\performance\parquet
 
 ### Tuần 6
 

@@ -1,0 +1,19 @@
+{
+  "runs": [
+    {
+      "run": 1,
+      "engine": "pyarrow",
+      "pyarrow_version": "18.1.0",
+      "python_version": "3.10.0",
+      "batch_size": 1024,
+      "use_threads": false,
+      "configuration_order": [
+        "parquet_4",
+        "parquet_8",
+        "parquet_16"
+      ],
+      "os_cache_cleared": false,
+      "errors": []
+    }
+  ]
+}

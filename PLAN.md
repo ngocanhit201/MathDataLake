@@ -95,3 +95,110 @@ Từ file src\performance\jsonl\chart.py tạo các biểu đồ
 | **Tốc độ theo bản ghi**     | `rows_per_second` | So sánh số bản ghi xử lý mỗi giây             |
 
 Két quả lưu biểu đồ tại results\performance\jsonl
+
+### **5. Tạo Parquet**
+
+Dữ liệu bước trước
+
+| Nguồn     | Nội dung hiện có                                                     | Điểm cần chú ý                                                         |
+| ---------- | ----------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| NuminaMath | `problem`,`solution`chứa text và LaTeX                            | `source`là nguồn con, ví dụ`synthetic_math`                         |
+| ProofNet   | `nl_statement`,`nl_proof`,`formal_statement`,`src_header`       | Có cả nội dung tự nhiên và Lean                                       |
+| LeanDojo   | `formal_statement`,`traced_tactics`, vị trí khai báo, repository | `formal_statement`mẫu đang chứa cả khai báo**và chứng minh** |
+
+Schema chung
+
+
+```
+schema_version: string
+id: string
+source_id: string
+dataset: string
+source_version: string
+split: stringcontent: struct
+    statement_text: string?
+    solution_text: string?
+    lean_code: string?
+    lean_header: string?
+    lean_code_kind: string?
+    lean_tactics: array
+        tactic: string
+        state_before: string
+        state_after: stringmetadata: struct
+    original_source: string?
+    original_split: string
+    strategy: string?
+    repository_url: string?
+    repository_commit: string?
+    file_path: string?
+    declaration_name: string?
+    start: array?
+    end: array?provenance: struct
+    input_file: string
+    input_line: longraw_record: string
+```
+
+Ánh sạ như sau: schema_v1.0
+
+| Trường chung     | NuminaMath   | ProofNet             | LeanDojo                            |
+| ------------------ | ------------ | -------------------- | ----------------------------------- |
+| `statement_text` | `problem`  | `nl_statement`     | `null`                            |
+| `solution_text`  | `solution` | `nl_proof`         | `null`                            |
+| `lean_code`      | `null`     | `formal_statement` | `formal_statement`                |
+| `lean_header`    | `null`     | `src_header`       | `null`                            |
+| `lean_code_kind` | `null`     | `"statement"`      | `"declaration_with_proof"`        |
+| `lean_tactics`   | `[]`       | `[]`               | Các bước trong`traced_tactics` |
+
+Quy tắc đi kèm
+
+- Các trường định danh, phiên bản và split phải là chuỗi không rỗng; id phải duy nhất.
+- NuminaMath bắt buộc có đề và lời giải.
+- ProofNet bắt buộc có phát biểu tự nhiên, Lean và header; lời chứng minh tự nhiên được phép rỗng theo baseline hiện tại.
+- LeanDojo bắt buộc có mã Lean và thông tin vị trí khai báo; danh sách tactic được phép rỗng.
+- Chuẩn hóa split val và valid về validation, đồng thời giữ giá trị gốc trong original_split.
+- Giữ nguyên thụt dòng của Lean và nội dung công thức LaTeX.
+
+Pipeline
+
+Đọc riêng 3 nguồn jsonl, code ở src\baseline\parquet\pipeline.py
+    → Ánh xạ về schema_v1.0
+    → Hợp nhất thành một DataFrame
+    → Kiểm tra dữ liệu
+    → Ghi kết quả vào results\parquet, lỗi ghi tại results\parquet\error.json
+
+Funtion hóa tránh 1 hàm quá dài, trước mỗi funtion có 1 đoạn text ngắn nêu chức năng
+
+
+### **6 Đo hiệu năng parquet**
+
+Sửa file src\performance\\parquet\data.py
+
+> Đọc toàn bộ data  của 3 tệp dataset parquet_4,8,16
+> → Đọc từng bản ghi
+> Ghi các chỉ số dưới vào file csv tại results\performance\parquet\data.csv;
+>
+> | Chỉ số            | Ý nghĩa                                 |
+> | ------------------- | ----------------------------------------- |
+> | `elapsed_seconds` | Thời gian đọc và parse toàn bộ file |
+> | `input_bytes`     | Dung lượng file trên đĩa             |
+> | `rows_ok`         | Số bản ghi đọc thành công           |
+> | `rows_per_second` | `rows_ok / elapsed_seconds`             |
+> | `mb_per_second`   | Dung lượng đầu vào MB / thời gian   |
+>
+> Mỗi lần chạy lại sẽ lưu 1 bản ghi mới
+
+### **7. Tạo chartParquet**
+
+
+
+Từ file src\performance\parquet\chart.py tạo các biểu đồ, dữ liệu từresults\performance\parquet\data.csv
+
+
+
+| File đầu ra           | Trục Y                                | Chiều tốt hơn |
+| ----------------------- | -------------------------------------- | ---------------- |
+| `elapsed_seconds.png` | Thời gian đọc và giải mã (giây) | Thấp hơn       |
+| `mb_per_second.png`   | Tốc độ đọc (MB/giây)             | Cao hơn         |
+| `rows_per_second.png` | Tốc độ đọc (bản ghi/giây)       | Cao hơn         |
+
+Két quả lưu biểu đồ tại results\performance\parquet
