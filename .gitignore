@@ -43,4 +43,6 @@ temp/
 
 # Downloaded data
 /results/raw/
+#jsonl
+/results/jsonl/
 **/.cache/

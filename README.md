@@ -1,5 +1,28 @@
 # MathDataLake
 
+Mục tiêu:
+
+Chung
+
+• Câu hỏi nghiên cứu phải chỉ ra nút thắt Big Data: khối lượng, đa dạng, tốc độ, chất lượng, chi phí tính toán, độ trễ hoặc
+khả năng chịu tải.
+• Có baseline đơn giản, chạy end-to-end trước khi triển khai phương pháp nâng cao.
+• Có tối thiểu ba mức quy mô hoặc ba mức tải; ưu tiên khoảng cách gần một bậc độ lớn nếu tài nguyên cho phép.
+• Báo cáo đồng thời chất lượng và chi phí; không chọn riêng metric có lợi cho phương pháp của nhóm.
+• Mọi biểu đồ phải được sinh từ raw results bằng script; ghi cấu hình phần cứng, phần mềm, seed, timeout và số lần lặp.
+• Có error analysis, ablation và limitation; không chỉ báo cáo kết quả tốt nhất.
+• Code, dữ liệu mẫu, data/model card và README phải cho phép một thành viên khác chạy lại.
+
+Của riêng nhóm
+• Mỗi thành viên có vai trò chính và dự phòng; khi bảo vệ phải hiểu toàn bộ pipeline.
+• Việc sử dụng AI phải được khai báo; mọi code và kết luận do AI hỗ trợ vẫn phải được nhóm kiểm chứng.
+
+
+1. Có thể hợp nhất dữ liệu văn bản, LaTeX và Lean vào một lược đồ chung mà không làm mất thông tin nguồn gốc hay
+   không?
+2. Khi dữ liệu tăng từ 10 nghìn lên hàng trăm nghìn hoặc toàn bộ kho, định dạng lưu trữ và cách chia vùng ảnh hưởng thế
+   nào tới thời gian, bộ nhớ và dung lượng?
+
 Nguyên tắc
 
 -Không tải và đưa toàn bộ dữ liệu lớn vào Git. Chỉ lưu sample hợp pháp, manifest, checksum và script tải/tạo dữ liệu. Mọi split phải cố định và được version hóa.
