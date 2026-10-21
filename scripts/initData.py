@@ -12,29 +12,42 @@ from configs.app import Config
 
 def getNuminaMath() -> Path:
     """Download NuminaMath at the revision specified in Config."""
-    output_dir = Config.RAW_DATA / "numinaMath"
+    output_dir = Config.NUMINA_OUTPUT_DIR
+    print(f"NuminaMath: {Config.NUMINA_REPO_ID} @ {Config.NUMINA_REVISION}", flush=True)
     subprocess.run(
         ["hf", "download", Config.NUMINA_REPO_ID,
-         "--repo-type", "dataset", "--revision", Config.NUMINA_REVISION,
+         "--repo-type", Config.NUMINA_REPO_TYPE, "--revision", Config.NUMINA_REVISION,
          "--local-dir", str(output_dir)],
         check=True,
     )
     return output_dir
-# Data in benchmark_to_publish folder
+
+
 def getProofNet() -> Path:
-    output_dir = Config.RAW_DATA / "proofNet"
-    subprocess.run(["git", "clone", "https://github.com/zhangir-azerbayev/ProofNet", str(output_dir)])
+    output_dir = Config.PROOFNET_OUTPUT_DIR
+    print(f"ProofNet: {Config.PROOFNET_REPO_URL} @ {Config.PROOFNET_REVISION}", flush=True)
+    subprocess.run(
+        ["git", "clone", "--no-checkout", Config.PROOFNET_REPO_URL, str(output_dir)],
+        check=True,
+    )
+    subprocess.run(
+        ["git", "-C", str(output_dir), "checkout", "--detach", Config.PROOFNET_REVISION],
+        check=True,
+    )
     return output_dir
 
 def getLeanDojo() -> Path:
-    """Tải Benchmark 4 v10, mathlib4 commit 29dcec074de168ac2bf835a77ef68bbe069194c5."""
-    output_dir = Config.RAW_DATA / "leandojoBenchmark4v10"
+    """Tải phiên bản LeanDojo được chỉ định trong Config."""
+    output_dir = Config.LEANDOJO_OUTPUT_DIR
     output_dir.mkdir(parents=True, exist_ok=True)
-    archive = output_dir / "leandojo_benchmark_4.tar.gz"
-    url = "https://zenodo.org/records/12740403/files/leandojo_benchmark_4.tar.gz?download=1"
+    archive = output_dir / Config.LEANDOJO_ARCHIVE_NAME
 
-    print("Đang tải LeanDojo Benchmark 4 v10...", flush=True)
-    urlretrieve(url, archive)
+    print(
+        f"LeanDojo: {Config.LEANDOJO_URL}\n"
+        f"Phiên bản: {Config.LEANDOJO_VERSION}; mathlib: {Config.LEANDOJO_MATHLIB_REVISION}",
+        flush=True,
+    )
+    urlretrieve(Config.LEANDOJO_URL, archive)
 
     print("Đang giải nén...", flush=True)
     with tarfile.open(archive, "r:gz") as data:
